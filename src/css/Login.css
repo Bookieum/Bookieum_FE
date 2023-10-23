@@ -1,0 +1,43 @@
+
+.btn_login {
+    width: 400px;
+    height: 20x;
+    top: 150px;
+    display:block;
+    margin:auto;
+    position: relative;
+
+  }
+  div h1{
+    margin: 0 auto;
+    text-align:center;
+    margin-top:100px;
+    font-size: 60px;
+  }
+  .child {
+    margin: 0 auto;
+  }
+  .child2 {
+    margin: 40 auto;
+  }
+  .child3 {
+    margin: 100 auto;
+  }
+  div span {
+    
+    border: 4px solid #ebda49;
+    border-radius: 5px;
+    background-color: yellow;
+    padding: 10px;
+    font-size: bold;
+    display:block;
+    text-align:center;
+    margin: 10px 0 10px 0;
+
+  }
+  
+  div span a {
+    text-decoration: none;
+    font-weight: bold;
+
+  }
