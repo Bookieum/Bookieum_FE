@@ -18,7 +18,8 @@ const Content = styled.div`
 const Footer = () => {
   return (
     <FooterDiv>
-      <Content>CopyRight bookieum</Content>
+      <Content>CopyRight bookieum<br/>도서 DB 제공: 알라딘 인터넷 서점(www.aladin.co.kr)
+      </Content>
     </FooterDiv>
   );
 };

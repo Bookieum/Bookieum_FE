@@ -1,6 +1,9 @@
 import React from 'react';
 import '../css/Login.css';
 import styled from "styled-components";
+import naver from '../image/btnW_완성형.png';
+import kakao from '../image/kakao.png';
+import google from '../image/google.png';
 
 const AllWrapper = styled.div`
   display:block;
@@ -34,13 +37,17 @@ const Login = () => {
             <h1>LOGIN</h1>
             <div className="btn_login">
                 <span className='child'>
-                    <a href={KAKAO_AUTH_URL}>카카오 로그인</a>
+                    <a href={KAKAO_AUTH_URL}><img src={kakao} style={{width:'350px', height:'80px'}}></img></a>
                 </span>
                 <span className='child2'>
-                    <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
+                    <a href={GOOGLE_AUTH_URL}>
+                        <img src={google} style={{width:'350px', height:'80px'}}></img>
+                        </a>
                 </span>
                 <span className='child3'>
-                    <a href={NAVER_AUTH_URL}>네이버 로그인</a>
+                    <a href={NAVER_AUTH_URL}>
+                        <img src={naver} style={{width:'350px', height:'80px'}}></img>
+                    </a>
                 </span>
             </div>
 

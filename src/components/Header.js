@@ -14,7 +14,7 @@ const Navbar = styled.nav`
     padding: 8px 24px;
   }
   font-size: 2rem;
-
+  box-shadow: 0 10px 10px -15px rgba(0,0,0,0.50);
   a:visited { 
     text-decoration-line: none;
     color: black;
@@ -32,6 +32,23 @@ const Navbarlogo = styled.div`
   i {
     color: orange;
   }
+    /* 북이음 */
+
+  // position: absolute;
+  width: 188px;
+  height: 69px;
+  left: 67px;
+  top: 9px;
+  padding: 0 30px;
+  font-family: 'Yeongdeok Blueroad';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 56px;
+
+  color: #000000;
+
+
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
@@ -45,6 +62,8 @@ const Navbarmenu = styled.ul`
   font-size: 16px;
 
   li {
+    font-family: 'Yeongdeok Blueroad';
+    font-style: normal;
     padding: 8px 12px;
     text-decoration-line: none;
     list-style-type:none;
@@ -148,8 +167,10 @@ export default function Header() {
               <img src={search_icon} alt="search_icon" />
           </Searchbar>
           {/* <li><a href="#">My Page</a></li> */}
-          <li><a href="/signup">회원가입</a></li>
+          {/* <li><a href="/signup">회원가입</a></li> */}
           <li><a href="/login">로그인</a></li>
+          <li><a href="/mypage">마이페이지</a></li>
+        
         </Navbarmenu>
       </Navbar>
     </>
