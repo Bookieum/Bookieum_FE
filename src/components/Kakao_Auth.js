@@ -34,9 +34,8 @@ const Kakao_Auth = () => {
       window.Kakao.Auth.setAccessToken(res.data.access_token); // access token 설정
       window.localStorage.setItem("token", res.data.access_token);
       console.log('받아온것 ', res);
-      console.log('진짜 토큰', res.data.access_token)
-
-      // setIsLoggedIn(true);
+      console.log('진짜 토큰', window.localStorage.getItem('token'))
+      sendToken()
       navigate('/profile');
     } catch (err) {
       console.log(err);
@@ -44,20 +43,22 @@ const Kakao_Auth = () => {
     }
   };
 
+
   const sendToken=async()=>{
-    // const token = window.localStorage.getItem('res.data.access_token');
-    // console.log('access token',token)
-    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth',{
+    const token = window.localStorage.getItem('token');
+    console.log('access token',token)
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth/',{
       method:'POST',
       hearders:{
         'Content-Type':'application/json; charset=utf-8'
       },
       body:JSON.stringify({
-        code:code
+        access_token:token
       }),
     })
     .then(res=>res.json())
     .then(res=>{
+      console.log(res)
       console.log('성공')
       navigate('/profile')
     })
@@ -74,7 +75,6 @@ const Kakao_Auth = () => {
   };
   useEffect(() => {
     getToken();
-    sendToken();
   }, []);
 
   return <div>로그인 진행중입니다..</div>
