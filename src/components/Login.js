@@ -36,17 +36,17 @@ const Login = () => {
         <AllWrapper>
             <h1>LOGIN</h1>
             <div className="btn_login">
-                <span className='child'>
-                    <a href={KAKAO_AUTH_URL}><img src={kakao} style={{width:'350px', height:'80px'}}></img></a>
+                <span >
+                    <a href={KAKAO_AUTH_URL}><img src={kakao} className='child'></img></a>
                 </span>
-                <span className='child2'>
+                <span>
                     <a href={GOOGLE_AUTH_URL}>
-                        <img src={google} style={{width:'350px', height:'80px'}}></img>
+                        <img src={google} className='child2'></img>
                         </a>
                 </span>
-                <span className='child3'>
+                <span >
                     <a href={NAVER_AUTH_URL}>
-                        <img src={naver} style={{width:'350px', height:'80px'}}></img>
+                        <img src={naver} className='child3'></img>
                     </a>
                 </span>
             </div>

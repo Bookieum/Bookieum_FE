@@ -168,8 +168,11 @@ export default function Header() {
           </Searchbar>
           {/* <li><a href="#">My Page</a></li> */}
           {/* <li><a href="/signup">회원가입</a></li> */}
+          <li><a href='/question'>질문</a></li>
           <li><a href="/login">로그인</a></li>
           <li><a href="/mypage">마이페이지</a></li>
+          <li><a href="/mainfunc">일기를 작성해</a></li>
+
         
         </Navbarmenu>
       </Navbar>

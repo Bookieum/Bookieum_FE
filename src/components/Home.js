@@ -12,7 +12,7 @@ const AllWrapper = styled.div`
   text-align: center;
   margin-top:130px;
   align-items:center;
-  animation: color-change-2x 2s linear infinite alternate both;
+//   animation: color-change-2x 2s linear infinite alternate both;
 }
 
 `;

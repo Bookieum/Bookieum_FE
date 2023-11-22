@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const FooterDiv = styled.footer`
+  margin-top:50px;
   text-align: center;
   background-color: white;
   font-size: 1.0rem;

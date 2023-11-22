@@ -19,14 +19,15 @@ const Auth = () => {
     let naverLogin = new window.naver.LoginWithNaverId({
       clientId: {NAVER_CLIENT_ID},
       callbackUrl: `http://localhost:3000/naver/oauth`,
-      loginButton: { color: "green", type: 3, height: "50" },
+      // loginButton: { color: "green", type: 3, height: "50" },
     });
     naverLogin.init();
-    naverLogin.logout();
+    // naverLogin.logout();
     try {
       naverLogin.getLoginStatus((status) => {
         if (status) {
           console.log(naverLogin.user);
+          navigate('/profile')
         }
       });
     } catch (err) {

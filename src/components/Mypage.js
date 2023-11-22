@@ -11,12 +11,10 @@ import { useEffect, useState } from 'react';
 const AllWrapper = styled.div`
   display:block;
   flex-direction: column;
-  // background-color:gray;
   margin:auto;
   height:auto;
   width:fit-content;
   align-items:center;
-  animation: color-change-2x 2s linear infinite alternate both;
 }
 
 `;
