@@ -18,22 +18,6 @@ const Kakao_Auth = () => {
   //check
   console.log(code);
 
-  const sendToken=async(data)=>{
-    const token = window.localStorage.getItem('token');
-
-    try {
-      const res = await axios.post('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth/' , data, {
-        headers: {
-          Authorization: token,
-        },
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  
-  
-
   const getToken = async () => {
     const payload = qs.stringify({
       grant_type: 'authorization_code',
@@ -48,7 +32,9 @@ const Kakao_Auth = () => {
       const res = await axios.post('https://kauth.kakao.com/oauth/token', payload);
       window.Kakao.init(REST_API_KEY); // Kakao Javascript SDK 초기화
       window.Kakao.Auth.setAccessToken(res.data.access_token); // access token 설정
+      window.localStorage.setItem("token", res.data.access_token);
       console.log('받아온것 ', res);
+      console.log('진짜 토큰', res.data.access_token)
 
       // setIsLoggedIn(true);
       navigate('/profile');
@@ -58,6 +44,34 @@ const Kakao_Auth = () => {
     }
   };
 
+  const sendToken=async()=>{
+    // const token = window.localStorage.getItem('res.data.access_token');
+    // console.log('access token',token)
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth',{
+      method:'POST',
+      hearders:{
+        'Content-Type':'application/json; charset=utf-8'
+      },
+      body:JSON.stringify({
+        code:code
+      }),
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      console.log('성공')
+      navigate('/profile')
+    })
+    // const data=qs.stringify({
+    //   access_token:token
+    // });
+    // try {
+    //   const res = await axios.post('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth/', data);
+    //   console.log('받아온것 ', res);
+
+    // } catch (e) {
+    //   console.error(e);
+    // }
+  };
   useEffect(() => {
     getToken();
     sendToken();
