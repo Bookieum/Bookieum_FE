@@ -13,6 +13,7 @@ function Naver_Login(props) {
   const code = new URL(window.location.href).searchParams.get('code');
   //check
   console.log(code);
+  window.localStorage.setItem("token", code);
 
   const sendCode=async()=>{
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/naver/oauth/',{
