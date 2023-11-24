@@ -33,8 +33,6 @@ const Kakao_Auth = () => {
       window.Kakao.init(REST_API_KEY); // Kakao Javascript SDK 초기화
       window.Kakao.Auth.setAccessToken(res.data.access_token); // access token 설정
       window.localStorage.setItem("token", res.data.access_token);
-      // console.log('받아온것 ', res);
-      // console.log('진짜 토큰', window.localStorage.getItem('token'))
       sendToken()
     } catch (err) {
       console.log(err);
@@ -61,16 +59,6 @@ const Kakao_Auth = () => {
       console.log('성공')
       window.location.replace('/question')
     })
-    // const data=qs.stringify({
-    //   access_token:token
-    // });
-    // try {
-    //   const res = await axios.post('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth/', data);
-    //   console.log('받아온것 ', res);
-
-    // } catch (e) {
-    //   console.error(e);
-    // }
   };
   useEffect(() => {
     getToken();

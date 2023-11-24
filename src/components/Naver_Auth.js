@@ -29,7 +29,7 @@ function Naver_Login(props) {
     .then(res=>{
       console.log(res)
       console.log('성공')
-      // window.location.replace('/question')
+      window.location.replace('/question')
     })
   }
   // const getToken = async () => {

@@ -3,7 +3,6 @@ import Footer from "./pages/Footer/Footer";
 import styled from "styled-components";
 import Signup from './components/Signup'
 import Home from './components/Home';
-import Profile from './components/Profile';
 import Login from './components/Login'
 import MyPage from './components/Mypage'
 import Question from './components/Question'
@@ -11,8 +10,6 @@ import MainFunc from './components/MainFunc'
 import Kakao_auth from './components/Kakao_Auth'
 import Naver_auth from './components/Naver_Auth'
 import Google_auth from './components/Google_Auth'
-
-import login2home from './components/Login2Home'
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
 import React from "react";
@@ -62,7 +59,6 @@ function App() {
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
             <Route path="/question" element={<Question/>}/>
-            {/* <Route path="/profile" element={<Profile />} /> */}
             <Route path="/MainFunc" element={<MainFunc />} />
           </Routes>
       </ContentWrapper>
