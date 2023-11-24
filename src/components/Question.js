@@ -37,8 +37,40 @@ const Survey = () => {
     }
   }
   const nextPage=(code,isChecked)=>{
+    // fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth/',{
+    //   method:'POST',
+    //   hearders:{
+    //     'Content-Type':'application/json; charset=utf-8'
+    //   },
+    //   body:JSON.stringify({
+    //     survey:checkedItems
+    //   }),
+    // })
+    // .then(res=>res.json())
+    // .then(res=>{
+    //   console.log(성공)
+    // })
+    console.log(checkedItems)
     setCheckedItems([])
     setQues(ques+1)
+  }
+
+  const submit=(code,isChecked)=>{
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/survay/',{
+      method:'POST',
+      hearders:{
+        'Content-Type':'application/json; charset=utf-8'
+      },
+      body:JSON.stringify({
+        survey:checkedItems
+      }),
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      console.log('성공')
+    })
+    console.log(checkedItems)
+    window.location.replace('/mainfunc')
   }
   function makebtn(ques){
      let arr=[];
@@ -62,7 +94,7 @@ const Survey = () => {
       <div className='submitdiv'>
         {
           ques===2?
-        <button class="submit">Submit</button>
+        <button class="submit" onClick={submit}>Submit</button>
         :
         <button class="submit"  onClick={nextPage}>Next</button>
         }
@@ -73,96 +105,3 @@ const Survey = () => {
   );
 };
 export default Survey;
-
-
-
-
-
-//백엔드 로그인 연동 성공시, 로그인 성공하면 바로 이 페이지 뜨도록 설정하자 
-// function Question(){
-
-//   const [question,setQuestion] = useState(['당신이 선호하는 장르는 어떤것인가요?','당신이 선호하는 분위기는 어떤것인가요?','당신이 선호하는 흥미 또는 관심사는 어떤것인가요?'])
-//   let [ques, setQues] =useState(0)
-//   let checkbtn=[['시대', '역사', '철학', '로맨스', '전쟁', '미스터리', '예술', '판타지',
-//   '자서전', '동화', '과학', '무협'], ['고민', '열정', '도전', '긍정', '후회', '행복', '우울', '위로', '고통',
-//   '자유', '희망', '슬픔', '열망', '비극', '불안', '용기', '절망', '불행', '유머', '힐링'],['리더십', '시간', '페미니즘', '취업', '진로', '비지니스', '설득', '건강',
-//   '심리', '시', '희곡', '가족','관계', '동물', '사진', '그림', '여행',
-//   '미술', '영화', '음악', '음식', '일기', '자연', '종교', '사랑', '인간',
-//   '생각', '사회', '인생', '일상', '친구', '성공', '정치', '취미', '스포']]
-// const [checkedList, setCheckedList] = useState<string[]>([]);
-//   const [isChecked, setIsChecked] = useState(false);
-
-//   const checkedItemHandler = (value: string, isChecked: boolean) => {
-//     if (isChecked) {
-//       setCheckedList((prev) => [...prev, value]);
-
-//       return;
-//     }
-
-//     if (!isChecked && checkedList.includes(value)) {
-//       setCheckedList(checkedList.filter((item) => item !== value));
-
-//       return;
-//     }
-
-//     return;
-//   };
-
-//   const checkHandler = (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
-//     setIsChecked(!isChecked);
-//     checkedItemHandler(value, e.target.checked);
-
-//     console.log(value, e.target.checked);
-//   };
-
-//   const onSubmit = useCallback(
-//     (e: React.FormEvent<HTMLFormElement>) => {
-//       e.preventDefault();
-
-//       console.log('checkedList:', checkedList);
-//     },
-//     [checkedList]
-//   );
-// 출처: https://junheedot.tistory.com/11 [프론트엔드 개발자의 기억 저장소:티스토리]
-//   function makebtn(ques){
-//     let arr=[];
- 
-//     for(let j=0;j<checkbtn[ques].length;j++){
-//       arr.push(
-//         // <button className={isActive ? 'btn-hover color-3':''} onClick={handleClick}>{checkbtn[ques][j]}</button>
-//         // <SortButton className={isActive ? 'btn-hover color-3':''} onClick={handleClick}>{checkbtn[ques][j]}</SortButton>
-//         <input type='checkbox'>{checkbtn[ques][j]}</input>
-//       )
-//     }
-    
-//     return arr
-//   }
-//   return (
-    
-//     <AllWrapper>
-      
-//         <div className='question'>
-//             <p>Q. {question[ques]}</p>
-//         </div>
-//         <div>
-//             {makebtn(ques)}
-//         </div>
-//         <div className='submitdiv'>
-//           {
-//             ques===2?
-//           <button class="submit">Submit</button>
-//           :
-//           <button class="submit"  onClick={ ()=> {setQues(ques+1)}}>Next</button>
-//           }
-//         </div>
-          
-//     </AllWrapper>
-   
-
-//   );
-// }
-  
-  
-  
-
-// export default Question;

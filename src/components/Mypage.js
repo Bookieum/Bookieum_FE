@@ -30,25 +30,24 @@ const Mypage = () => {
     getProfile();
   }, []);
 
-  const getProfile = async () => {
-    try {
-      // Kakao SDK API를 이용해 사용자 정보 획득
-      let data = await window.Kakao.API.request({
-        url: '/v2/user/me',
-      });
 
-      console.log(data);
-      // 사용자 정보 변수에 저장
-      setUserId(data.id);
-      setNickName(data.properties.nickname);
-      setProfileImage(data.properties.profile_image);
-      setGender(data.kakao_account.gender);
-
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const getProfile=(code,isChecked)=>{
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/mypage/information/',{
+      method:'POST',
+      hearders:{
+        'Content-Type':'application/json; charset=utf-8'
+      },
+      body:JSON.stringify({
+        access_token:window.localStorage.getItem('token')
+      }),
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      console.log(res)
+      const user_id=res.user_id
+      const nickName=res.Name
+    })
+  }
   return (
     <AllWrapper>
         <div>
@@ -67,9 +66,7 @@ const Mypage = () => {
                         <li>userid: {user_id}</li>
                         <li>독서 Level : 0</li>
                         <li>닉네임 : {nickName}</li>
-                        <li>나이 :  27</li>
                         <li>성별 :  {gender}</li>
-                        <li>지역 :경기도 용인시</li>
                         <li>선호 장르 : 추리소설</li>
                     </ul>
                 </span>
