@@ -32,7 +32,7 @@ const Google = (props) => {
         // console.log(data)
         const token = data.access_token;
         console.log('Access Token:', data.access_token);
-        window.localStorage.setItem('token', token);
+        window.localStorage.setItem('token', data.access_token);
 
         // 3) 액세스 토큰 백엔드로 보내기
         fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/google/oauth/',{

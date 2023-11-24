@@ -193,7 +193,11 @@ const Menu=styled.div`
    }
    
 `;
-
+const onLogout=()=>{
+  localStorage.clear()
+  window.location.replace("/")
+  console.log('로그아웃 했습니다.')
+}
 export default function Header(props) {
   return (
     <>
@@ -213,7 +217,7 @@ export default function Header(props) {
             (<Menu>
               <li><a href="/mainfunc">책 추천</a></li>
               <li><a href="/mypage">마이페이지</a></li>
-              <li>로그아웃</li>
+              <li><button onClick={onLogout}>로그아웃</button></li>
             </Menu>
             )
             :
