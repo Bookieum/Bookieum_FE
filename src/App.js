@@ -10,6 +10,7 @@ import MainFunc from './components/MainFunc'
 import Kakao_auth from './components/Kakao_Auth'
 import Naver_auth from './components/Naver_Auth'
 import Google_auth from './components/Google_Auth'
+import Logout from './components/Logout'
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
 import React from "react";
@@ -54,6 +55,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/login" element={<Login />}/>
+            <Route path="/logout" element={<Logout />}/>
             <Route path='/kakao/oauth' element={<Kakao_auth/>}/>
             <Route path='/naver/oauth' element={<Naver_auth/>}/>
             <Route path='/google/oauth' element={<Google_auth/>}/>

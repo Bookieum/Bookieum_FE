@@ -15,8 +15,7 @@ const AllWrapper = styled.div`
 `;
 
 
-
-const MealChooseCard = () => {
+const Survey = () => {
   const [checkedItems, setCheckedItems] = useState([])
 
   const [question,setQuestion] = useState(['당신이 선호하는 장르는 어떤것인가요?','당신이 선호하는 분위기는 어떤것인가요?','당신이 선호하는 흥미 또는 관심사는 어떤것인가요?'])
@@ -59,7 +58,6 @@ const MealChooseCard = () => {
       </div>
       <div className='qestdiv'>
           {makebtn(ques).map(data=><QuestionButton data={data} checkedItems={checkedItems} checkedItemHandler={checkedItemHandler}/>)}      
-
       </div>
       <div className='submitdiv'>
         {
@@ -74,7 +72,7 @@ const MealChooseCard = () => {
     
   );
 };
-export default MealChooseCard;
+export default Survey;
 
 
 

@@ -230,9 +230,12 @@ export default function Header(props) {
             props.login
             ?
             (<Menu>
+              <li><a href="/question">설문</a></li>
               <li><a href="/mainfunc">책 추천</a></li>
               <li><a href="/mypage">마이페이지</a></li>
-              <li><button onClick={onLogout}>로그아웃</button></li>
+              <li><a href="/logout">로그아웃</a></li>
+
+              {/* <li><button onClick={onLogout}>로그아웃</button></li> */}
             </Menu>
             )
             :
