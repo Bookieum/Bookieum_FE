@@ -14,62 +14,22 @@ const Google = (props) => {
     const oAuthHandler = () => {
       window.location.assign(oAuthURL);
     }
-
-    // 1) calllback으로 받은 인가코드
-    const code = new URL(window.location.href).searchParams.get('code');
-    // console.log(code);
-
-    // 2) 서버에 인가코드 전송
-    fetch('https://oauth2.googleapis.com/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `code=${code}&client_id=${GOOGLE_CLIENT_ID}&client_secret=${GOOGLE_CLIENT_SECRET}&redirect_uri=${GOOGLE_REDIRECT_URI}&grant_type=authorization_code&scope=email profile`,
-    })
-    .then(response => response.json())
-    .then(data => {
-      window.localStorage.setItem("token", data.access_token);
-
-      // console.log('Access Token:', data.access_token);
-      // 3) 액세스 토큰 백엔드로 보내기
-      fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/google/oauth/',{
-      method:'POST',
-      hearders:{
-        'Content-Type':'application/json; charset=utf-8'
-      },
-      body:JSON.stringify({
-        access_token:data.access_token
-      }),
-    })
-    .then(res=>res.json())
-    .then(res=>{
-      window.localStorage.setItem("token", data.access_token);
-      console.log(res)
-      console.log('성공')
-    })
-    })
-    .catch(error => console.error('Error:', error));
-    
-    
-
-
-    // useEffect( async () => {
-    //   const url = new URL(window.location.href);
-    //   const hash = url.hash;
-
-    //   if (hash) {
-    //     const accessToken = hash.split("=")[1].split("&")[0];
-    //     await axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + accessToken, { 
-    //       headers: { 
-    //         authorization: `token ${accessToken}`, 
-    //         accept: 'application/json' 
-    //       }})
-    //       .then(data => {
-    //         console.log(data);
-    //         setData(data);
-    //     }).catch(e => console.log('oAuth token expired'));
-    //   }
-    // }, [])
+  
+    useEffect( async () => {
+      const url = new URL(window.location.href);
+      const hash = url.hash;
+      if (hash) {
+        const accessToken = hash.split("=")[1].split("&")[0];
+        await axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + accessToken, { 
+          headers: { 
+            authorization: `token ${accessToken}`, 
+            accept: 'application/json' 
+          }})
+          .then(data => {
+            console.log(data);
+            setData(data);
+        }).catch(e => console.log('oAuth token expired'));
+      }
+    }, [])
 }
 export default Google;

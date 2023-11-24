@@ -32,9 +32,7 @@ const Login = () => {
     //구글 로그인
     const GOOGLE_CLIENT_ID="874649425571-cd5hu54l1keu4udm8a0bpte5388cdph4.apps.googleusercontent.com"
     const GOOGLE_REDIRECT_URI="http://localhost:3000/google/oauth"
-    const GOOGLE_AUTH_URL=`https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=email profile`;
-    
-
+    const GOOGLE_AUTH_URL=`https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`;
     return (
         <AllWrapper>
             <h1>LOGIN</h1>
