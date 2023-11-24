@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import search_icon from "../image/ico_package.png";
 import { Link } from "react-router-dom";
+import { produceWithPatches } from "immer";
 
 const Navbar = styled.nav`
   display: flex;
@@ -153,7 +154,47 @@ const Searchbar=styled.div`
     }
 `;
 
-export default function Header() {
+const Menu=styled.div`
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  font-size: 16px;
+
+  li {
+    font-family: 'Yeongdeok Blueroad';
+    font-style: normal;
+    padding: 8px 12px;
+    text-decoration-line: none;
+    list-style-type:none;
+    position:relative;
+    display:inline-block;
+    font-weight: bold;
+    font-size:1.0625rem;
+    text-decoration: none;
+  }
+  li:hover {
+    background-color: #a5c9ca;
+    text-decoration-line: none;
+    list-style-type:none;
+  }
+  a:link { 
+      color: black;
+      text-decoration: none;
+   }
+    
+   a:visited { 
+    text-decoration: none;
+    color: black;
+   }
+    
+   a:hover { 
+    text-decoration: underline;
+    color: black;
+   }
+   
+`;
+
+export default function Header(props) {
   return (
     <>
       <Navbar>
@@ -166,14 +207,21 @@ export default function Header() {
               <input type="text" placeholder="검색어를 입력하세요."/>
               <img src={search_icon} alt="search_icon" />
           </Searchbar>
-          {/* <li><a href="#">My Page</a></li> */}
-          {/* <li><a href="/signup">회원가입</a></li> */}
-          <li><a href='/question'>질문</a></li>
-          <li><a href="/login">로그인</a></li>
-          <li><a href="/mypage">마이페이지</a></li>
-          <li><a href="/mainfunc">일기를 작성해</a></li>
-
-        
+          {
+            props.login
+            ?
+            (<Menu>
+              <li><a href="/mainfunc">책 추천</a></li>
+              <li><a href="/mypage">마이페이지</a></li>
+              <li>로그아웃</li>
+            </Menu>
+            )
+            :
+            (<Menu>
+              <li><a href="/login">로그인</a></li>
+            </Menu>
+            )
+          }
         </Navbarmenu>
       </Navbar>
     </>

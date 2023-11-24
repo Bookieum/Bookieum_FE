@@ -33,10 +33,9 @@ const Kakao_Auth = () => {
       window.Kakao.init(REST_API_KEY); // Kakao Javascript SDK 초기화
       window.Kakao.Auth.setAccessToken(res.data.access_token); // access token 설정
       window.localStorage.setItem("token", res.data.access_token);
-      console.log('받아온것 ', res);
-      console.log('진짜 토큰', window.localStorage.getItem('token'))
+      // console.log('받아온것 ', res);
+      // console.log('진짜 토큰', window.localStorage.getItem('token'))
       sendToken()
-      navigate('/profile');
     } catch (err) {
       console.log(err);
       navigate('/');
@@ -60,7 +59,7 @@ const Kakao_Auth = () => {
     .then(res=>{
       console.log(res)
       console.log('성공')
-      navigate('/profile')
+      window.location.replace('/question')
     })
     // const data=qs.stringify({
     //   access_token:token

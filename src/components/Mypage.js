@@ -23,6 +23,8 @@ const Mypage = () => {
   const [user_id, setUserId] = useState();
   const [nickName, setNickName] = useState();
   const [profileImage, setProfileImage] = useState();
+  const [gender, setGender] = useState();
+
 
   useEffect(() => {
     getProfile();
@@ -40,6 +42,8 @@ const Mypage = () => {
       setUserId(data.id);
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.profile_image);
+      setGender(data.kakao_account.gender);
+
     } catch (err) {
       console.log(err);
     }
@@ -56,7 +60,7 @@ const Mypage = () => {
             <div className='head'>
                 <span className='profileimg'>
                     {/* <img src={profileImage} style={{ width: '200px', height: '200px' }}></img> */}
-                    <img src={cute} className="profile"></img>
+                    <img src={profileImage} className="profile"></img>
                 </span>
                 <span className='userinfo'>
                     <ul className='info'>
@@ -64,7 +68,7 @@ const Mypage = () => {
                         <li>독서 Level : 0</li>
                         <li>닉네임 : {nickName}</li>
                         <li>나이 :  27</li>
-                        <li>성별 :  여</li>
+                        <li>성별 :  {gender}</li>
                         <li>지역 :경기도 용인시</li>
                         <li>선호 장르 : 추리소설</li>
                     </ul>

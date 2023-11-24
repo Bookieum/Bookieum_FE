@@ -13,7 +13,7 @@ import Naver_auth from './components/Naver_Auth'
 import Google_auth from './components/Google_Auth'
 
 import login2home from './components/Login2Home'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
 import React from "react";
 
@@ -28,6 +28,17 @@ const ContentWrapper = styled.div`
 `;
 
 function App() {
+  const [login, setLoginState]=useState(false);
+  const storedUserLoggedIninfo=localStorage.getItem('token');
+  useEffect(()=>{
+    if(storedUserLoggedIninfo===null){
+      console.log('로그인 실패')
+    }
+    else{
+      setLoginState(true)
+      console.log('로그인 성공')
+    }
+  })
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -41,18 +52,17 @@ function App() {
   return (
     <AllWrapper>
       <ContentWrapper>
-        <Header />
+        <Header login={login}/>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/login" element={<Login/>}/>
+            <Route path="/login" element={<Login />}/>
             <Route path='/kakao/oauth' element={<Kakao_auth/>}/>
             <Route path='/naver/oauth' element={<Naver_auth/>}/>
             <Route path='/google/oauth' element={<Google_auth/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
             <Route path="/question" element={<Question/>}/>
-            {/* <Route path='/kakao/oauth/login2home' element={<login2home/>}/> */}
-            <Route path="/profile" element={<Profile />} />
+            {/* <Route path="/profile" element={<Profile />} /> */}
             <Route path="/MainFunc" element={<MainFunc />} />
           </Routes>
       </ContentWrapper>
