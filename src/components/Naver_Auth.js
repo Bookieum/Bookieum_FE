@@ -13,7 +13,7 @@ function Naver_Login(props) {
   const code = new URL(window.location.href).searchParams.get('code');
   //check
   console.log(code);
-  window.localStorage.setItem("token", code);
+  // window.localStorage.setItem("token", code);
 
   const sendCode=async()=>{
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/naver/oauth/',{
@@ -28,6 +28,7 @@ function Naver_Login(props) {
     .then(res=>res.json())
     .then(res=>{
       console.log(res)
+      window.localStorage.setItem("token", res.access_token);
       console.log('성공')
       window.location.replace('/question')
     })
