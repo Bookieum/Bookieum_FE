@@ -37,31 +37,33 @@ const Survey = () => {
     }
   }
   const nextPage=(code,isChecked)=>{
-    // fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth/',{
-    //   method:'POST',
-    //   hearders:{
-    //     'Content-Type':'application/json; charset=utf-8'
-    //   },
-    //   body:JSON.stringify({
-    //     survey:checkedItems
-    //   }),
-    // })
-    // .then(res=>res.json())
-    // .then(res=>{
-    //   console.log(성공)
-    // })
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/survey/surveypage/',{
+      method:'POST',
+      hearders:{
+        'Content-Type':'application/json; charset=utf-8'
+      },
+      body:JSON.stringify({
+        access_token:window.localStorage.getItem('token'),
+        survey:checkedItems
+      }),
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      console.log('성공') 
+    })
     console.log(checkedItems)
     setCheckedItems([])
     setQues(ques+1)
   }
 
   const submit=(code,isChecked)=>{
-    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/survay/',{
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/survey/surveypage/',{
       method:'POST',
       hearders:{
         'Content-Type':'application/json; charset=utf-8'
       },
       body:JSON.stringify({
+        access_token:window.localStorage.getItem('token'),
         survey:checkedItems
       }),
     })
@@ -72,6 +74,7 @@ const Survey = () => {
     console.log(checkedItems)
     window.location.replace('/mainfunc')
   }
+
   function makebtn(ques){
      let arr=[];
      for(let j=0;j<checkbtn[ques].length;j++){

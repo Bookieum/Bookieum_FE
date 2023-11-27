@@ -1,13 +1,14 @@
 import React from 'react';
 import '../css/home.css';
 import styled from "styled-components";
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useContext } from 'react';
 // import '../css/question.css'
 import '../css/mainfunc.css'
 import Webcam from 'react-webcam';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import mimeType  from 'mime';
+import { useNavigate } from 'react-router-dom';
 
 const AllWrapper = styled.div`
   display:block;
@@ -29,7 +30,7 @@ const VideoRecorder = () => {
   const videoChunks = useRef<Blob>([]);
   const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
   const formData = new FormData();
-
+  const navigate = useNavigate();
   // 텍스트 전달
   const [text,setText] = useState("");
 
@@ -49,72 +50,84 @@ const VideoRecorder = () => {
       .then((res) => console.log(res));
   };
 
-  //비디오 전달
-  const getMediaPermission = useCallback(async () => {
-    try {
-      const audioConstraints = { audio: true };
-      const videoConstraints = {
-        audio: false,
-        video: true,
-      };
+  // const { onCreate } = useContext(DiaryDispatchContext);
 
-      const audioStream = await navigator.mediaDevices.getUserMedia(
-          audioConstraints
-      );
-      const videoStream = await navigator.mediaDevices.getUserMedia(
-          videoConstraints
-      );
+	// const handleSubmit = () => {
+  //       if (content.length < 1) {
+  //           contentRef.current.focus();
+  //           return;
+  //       }
 
-      if (videoRef.current) {
-          videoRef.current.srcObject = videoStream;
-      }
+  //       onCreate(data, content);
+  //       navigate("/", { replace: true });
+  //   }
 
-      // MediaRecorder 추가
-      const combinedStream = new MediaStream([
-          ...videoStream.getVideoTracks(),
-        ...audioStream.getAudioTracks(),
-      ]);
+//   //비디오 전달
+//   const getMediaPermission = useCallback(async () => {
+//     try {
+//       const audioConstraints = { audio: true };
+//       const videoConstraints = {
+//         audio: false,
+//         video: true,
+//       };
 
-      const recorder = new MediaRecorder(combinedStream, {
-          mimeType: 'video/webm',
-      });
+//       const audioStream = await navigator.mediaDevices.getUserMedia(
+//           audioConstraints
+//       );
+//       const videoStream = await navigator.mediaDevices.getUserMedia(
+//           videoConstraints
+//       );
 
-      recorder.ondataavailable = (e) => {
-          if (typeof e.data === 'undefined') return;
-        if (e.data.size === 0) return;
-        videoChunks.current.push(e.data);
-      };
+//       if (videoRef.current) {
+//           videoRef.current.srcObject = videoStream;
+//       }
 
-      mediaRecorder.current = recorder;
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+//       // MediaRecorder 추가
+//       const combinedStream = new MediaStream([
+//           ...videoStream.getVideoTracks(),
+//         ...audioStream.getAudioTracks(),
+//       ]);
 
-  const downloadVideo = () => {
-    const videoBlob = new Blob(videoChunks.current, { type: mimeType });
-    const videoUrl = URL.createObjectURL(videoBlob);
-    const link = document.createElement('a');
-    link.download = `My video - ${dayjs().format('YYYYMMDD')}.webm`;
-    link.href = videoUrl;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+//       const recorder = new MediaRecorder(combinedStream, {
+//           mimeType: 'video/webm',
+//       });
+
+//       recorder.ondataavailable = (e) => {
+//           if (typeof e.data === 'undefined') return;
+//         if (e.data.size === 0) return;
+//         videoChunks.current.push(e.data);
+//       };
+
+//       mediaRecorder.current = recorder;
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }, []);
+
+//   const downloadVideo = () => {
+//     const videoBlob = new Blob(videoChunks.current, { type: mimeType });
+//     const videoUrl = URL.createObjectURL(videoBlob);
+//     const link = document.createElement('a');
+//     link.download = `My video - ${dayjs().format('YYYYMMDD')}.webm`;
+//     link.href = videoUrl;
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+//   };
 
 
-  const sendVideo=()=>{
-    const formData = new FormData();
-    formData.append("video", mediaRecorder.current); 
-    axios.post('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/', formData, { // 요청
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-})
-  }
-  useEffect(() => {
-    getMediaPermission();
-  }, []);
+//   const sendVideo=()=>{
+//     const formData = new FormData();
+//     formData.append("video", mediaRecorder.current); 
+//     axios.post('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/', formData, { // 요청
+//     headers: {
+//       'Content-Type': 'multipart/form-data'
+//     }
+// })
+//   }
+//   useEffect(() => {
+//     getMediaPermission();
+//   }, []);
 
   return (
     
@@ -122,7 +135,7 @@ const VideoRecorder = () => {
       <div className='question'>
         <p>당신의 오늘 하루는 어땠나요?</p>
       </div>
-      <form onSubmit={submitHandler}>
+      <form action="http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation" method="POST">
         <div>
           <section>
             <Webcam
@@ -130,19 +143,19 @@ const VideoRecorder = () => {
               border-radius={'10px'}/>
           <textarea
             placeholder="오늘 하루를 솔직하게 적어주세요."
-            ref={contentRef}
-            value={content}
-            onChange={textHandler} />
+            type="text"
+            name="diary"
+            onChange={(e)=>setContent(e.target.value)} />
 
           </section>
         </div>
         <div className='submitdiv'>
-          <button class="submit" onClick={sendVideo}>Submit</button>
+          <button class="submit" type={"positive"} >Submit</button>
         </div>
       </form>
-      <button onClick={() => mediaRecorder.current?.start()}>Start Recording</button>
+      {/* <button onClick={() => mediaRecorder.current?.start()}>Start Recording</button>
       <button onClick={() => mediaRecorder.current?.stop()}>Stop Recording</button>
-      <button onClick={downloadVideo}>Download</button>
+      <button onClick={downloadVideo}>Download</button> */}
 
     </AllWrapper>
   );
