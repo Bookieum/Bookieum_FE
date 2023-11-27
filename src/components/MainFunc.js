@@ -41,13 +41,23 @@ const VideoRecorder = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     // state에 저장한 값을 가져옵니다.
-    console.log(text);
-    let body = {
-      email: text
-    };
-    axios
-      .post('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/', body)
-      .then((res) => console.log(res));
+    const formData = new FormData();
+    formData.append('text',text)
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation',{
+      method:'POST',
+      hearders:{
+        'Content-Type':'application/json; charset=utf-8'
+      },
+      body:JSON.stringify({
+        text:formData
+      }),
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      console.log(res)
+      console.log('성공')
+      // window.location.replace('/question')
+    })
   };
 
   // const { onCreate } = useContext(DiaryDispatchContext);
@@ -145,12 +155,12 @@ const VideoRecorder = () => {
             placeholder="오늘 하루를 솔직하게 적어주세요."
             type="text"
             name="diary"
-            onChange={(e)=>setContent(e.target.value)} />
+            onChange={textHandler} />
 
           </section>
         </div>
         <div className='submitdiv'>
-          <button class="submit" type={"positive"} >Submit</button>
+          <button class="submit" type='submit' onClick={submitHandler}>Submit</button>
         </div>
       </form>
       {/* <button onClick={() => mediaRecorder.current?.start()}>Start Recording</button>
