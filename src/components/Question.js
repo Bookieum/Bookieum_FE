@@ -37,6 +37,9 @@ const Survey = () => {
     }
   }
   const nextPage=(code,isChecked)=>{
+    const isLastPage = ques === 1;
+    console.log(isLastPage ? 'mood' : 'genre');
+
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/survey/surveypage/',{
       method:'POST',
       hearders:{
@@ -44,6 +47,7 @@ const Survey = () => {
       },
       body:JSON.stringify({
         access_token:window.localStorage.getItem('token'),
+        type: isLastPage ? 'mood' : 'genre',
         survey:checkedItems
       }),
     })
@@ -64,6 +68,7 @@ const Survey = () => {
       },
       body:JSON.stringify({
         access_token:window.localStorage.getItem('token'),
+        type: 'interest',
         survey:checkedItems
       }),
     })
@@ -71,7 +76,7 @@ const Survey = () => {
     .then(res=>{
       console.log('성공')
     })
-    console.log(checkedItems)
+    console.log(checkedItems);
     window.location.replace('/mainfunc')
   }
 

@@ -38,25 +38,25 @@ const VideoRecorder = () => {
     e.preventDefault();
     setText(e.target.value);
   };
-  const submitHandler = (e) => {
-    e.preventDefault();
-    // state에 저장한 값을 가져옵니다.
-    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
-      method:'POST',
-      hearders:{
-        'Content-Type':'application/json; charset=utf-8'
-      },
-      body:JSON.stringify({
-        text:text
-      }),
-    })
-    .then(res=>res.json())
-    .then(res=>{
-      console.log(res)
-      console.log('성공')
-      // window.location.replace('/question')
-    })
-  };
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   // state에 저장한 값을 가져옵니다.
+  //   fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
+  //     method:'POST',
+  //     hearders:{
+  //       'Content-Type':'application/json; charset=utf-8'
+  //     },
+  //     body:JSON.stringify({
+  //       text:text
+  //     }),
+  //   })
+  //   .then(res=>res.json())
+  //   .then(res=>{
+  //     console.log(res)
+  //     console.log('성공')
+  //     // window.location.replace('/question')
+  //   })
+  // };
 
 
 //   //비디오 전달
@@ -113,17 +113,19 @@ const VideoRecorder = () => {
   };
 
 
-  const sendVideo=()=>{
+  const sendVideo=(e)=>{
+    e.preventDefault();
+    const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
     const formData = new FormData();
-    formData.append("video", mediaRecorder.current); 
+    formData.append("text",text)
+    formData.append("video", videoBlob); 
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
       method:'POST',
       hearders:{
-        'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'multipart/form-data; application/json; charset=utf-8'
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body:{
-        formData
-      },
+      body:formData
     })
     .then(res=>res.json())
     .then(res=>{
@@ -147,7 +149,7 @@ const VideoRecorder = () => {
       <div className='question'>
         <p>당신의 오늘 하루는 어땠나요?</p>
       </div>
-      <form action="http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation" method="POST">
+      <form>
         <div>
           <section>
             <Webcam
@@ -162,8 +164,8 @@ const VideoRecorder = () => {
           </section>
         </div>
         <div className='submitdiv'>
-          <button class="submit" type='submit' onClick={submitHandler}>Submit</button>
-          <button class="submit" type='submit' onClick={sendVideo}>Video Submit</button>
+          <button class="submit" type='submit' onClick={sendVideo}>Submit</button>
+          {/* <button class="submit" type='submit' onClick={sendVideo}>Video Submit</button> */}
         </div>
       </form>
       <button onClick={() => mediaRecorder.current?.start()}>Start Recording</button>
