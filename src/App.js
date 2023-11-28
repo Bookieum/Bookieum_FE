@@ -62,7 +62,7 @@ function App() {
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
             <Route path="/question" element={<Question/>}/>
-            <Route path="/MainFunc" element={<MainFunc />} />
+            <Route path="/mainFunc" element={<MainFunc />} />
           </Routes>
       </ContentWrapper>
       <Footer />

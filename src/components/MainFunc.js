@@ -24,12 +24,12 @@ const AllWrapper = styled.div`
 `;
 const VideoRecorder = () => {
   const contentRef = useRef();
+  const videoRef = useRef(null);
   const [content, setContent] = useState("");
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const mediaRecorder = useRef<MediaRecorder | null>(null);
-  const videoChunks = useRef<Blob>([]);
-  const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
-  const formData = new FormData();
+  const mediaRecorder = useRef(null);
+  const videoChunks = useRef([]);
+  // const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
+  // const formData = new FormData();
   const navigate = useNavigate();
   // 텍스트 전달
   const [text,setText] = useState("");
@@ -62,6 +62,7 @@ const VideoRecorder = () => {
 //   //비디오 전달
   const getMediaPermission = useCallback(async () => {
     try {
+      console.log("video start");
       const audioConstraints = { audio: true };
       const videoConstraints = {
         audio: false,
@@ -90,9 +91,10 @@ const VideoRecorder = () => {
       });
 
       recorder.ondataavailable = (e) => {
-          if (typeof e.data === 'undefined') return;
+        if (typeof e.data === 'undefined') return;
         if (e.data.size === 0) return;
         videoChunks.current.push(e.data);
+        console.log("video stop")
       };
 
       mediaRecorder.current = recorder;
@@ -113,7 +115,7 @@ const VideoRecorder = () => {
   };
 
 
-  const sendVideo=(e)=>{
+  const sendHandler=(e)=>{
     e.preventDefault();
     const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
     const formData = new FormData();
@@ -133,11 +135,6 @@ const VideoRecorder = () => {
       console.log('성공')
       // window.location.replace('/question')
     })
-    // axios.post('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/', formData, { // 요청
-    // headers: {
-    //   'Content-Type': 'multipart/form-data'
-    // }
-    //})
   }
   useEffect(() => {
     getMediaPermission();
@@ -152,24 +149,25 @@ const VideoRecorder = () => {
       <form>
         <div>
           <section>
-            <Webcam
+          <video ref={videoRef} autoPlay />
+            {/* <Webcam
               width={'300px'}
-              border-radius={'10px'}/>
-          <textarea
-            placeholder="오늘 하루를 솔직하게 적어주세요."
-            type="text"
-            name="diary"
-            onChange={textHandler} />
+              border-radius={'10px'}/> */}
+            <textarea
+              placeholder="오늘 하루를 솔직하게 적어주세요."
+              type="text"
+              name="diary"
+              onChange={textHandler} />
 
           </section>
         </div>
         <div className='submitdiv'>
-          <button class="submit" type='submit' onClick={sendVideo}>Submit</button>
+          <button class="submit" type='submit' onClick={sendHandler}>Submit</button>
           {/* <button class="submit" type='submit' onClick={sendVideo}>Video Submit</button> */}
         </div>
       </form>
-      <button onClick={() => mediaRecorder.current?.start()}>Start Recording</button>
-      <button onClick={() => mediaRecorder.current?.stop()}>Stop Recording</button>
+      <button onClick={() => mediaRecorder.current.start()}>Start Recording</button>
+      <button onClick={() => mediaRecorder.current.stop()}>Stop Recording</button>
       <button onClick={downloadVideo}>Download</button>
 
     </AllWrapper>
