@@ -6,6 +6,8 @@ import icon1 from '../image/icon1.png'
 import icon2 from '../image/icon2.png'
 import icon3 from '../image/icon3.png'
 import icon4 from '../image/icon4.png'
+import icon5 from '../image/새싹.png'
+
 import { useEffect, useState } from 'react';
 
 const AllWrapper = styled.div`
@@ -22,14 +24,18 @@ const AllWrapper = styled.div`
 const Mypage = () => {
   const [user_id, setUserId] = useState();
   const [nickName, setNickName] = useState();
+  const [readLevel, setreadLevel] = useState();
   const [profileImage, setProfileImage] = useState();
   const [gender, setGender] = useState();
+  const [genre, setGenre] = useState();
+  const [mood, setMood] = useState();
+  const [interest, setInterest] = useState();
+
 
 
   useEffect(() => {
     getProfile();
   }, []);
-
 
   const getProfile=(code,isChecked)=>{
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/mypage/information/',{
@@ -43,10 +49,20 @@ const Mypage = () => {
     })
     .then(res=>res.json())
     .then(res=>{
-      console.log(res)
-      const user_id=res.user_id
-      const nickName=res.Name
+      console.log(res.data)
+      setNickName(res.data.user_name);
+      setreadLevel(res.data.reading_level);
+      setGender(res.data.gender)
+      setGenre(res.data.genre)
+      setMood(res.data.mood)
+      setInterest(res.data.interest)
+      
+
+      // nickName=res.data.fields.user_name
     })
+
+
+
   }
   return (
     <AllWrapper>
@@ -59,15 +75,15 @@ const Mypage = () => {
             <div className='head'>
                 <span className='profileimg'>
                     {/* <img src={profileImage} style={{ width: '200px', height: '200px' }}></img> */}
-                    <img src={profileImage} className="profile"></img>
+                    <img src={icon5} className="profile"></img>
                 </span>
                 <span className='userinfo'>
                     <ul className='info'>
-                        <li>userid: {user_id}</li>
-                        <li>독서 Level : 0</li>
-                        <li>닉네임 : {nickName}</li>
-                        <li>성별 :  {gender}</li>
-                        <li>선호 장르 : 추리소설</li>
+                        {/* <li>userid: {user_id}</li> */}
+                        <li>reding Level : {readLevel}</li>
+                        <li>이름 : {nickName}</li>
+                        <li>성별 : {gender} </li>
+                        <li>선호 장르 : <br/> Genre : {genre} <br/>Mood : {mood} <br/> Interest: {interest}</li>
                     </ul>
                 </span>
             </div>
@@ -77,28 +93,20 @@ const Mypage = () => {
             <p className='theme'>History</p>
         </div>
         <div className='mid'>
-            <span>
-                <h2 className='histday'>2023-10-31 00:44:41</h2>
-            </span>
-            <span className='userinfo'>
-                <p>감정 측정 : 긍정(47%), 부정(19%), 평이(34%)</p>
-                <br/>
-                <p>Q. 오늘 당신의 하루는 어땠나요?</p>
-                <p>A. 위로받고 싶은 하루였어요..</p>
-                <br/>
-                <p>Q. 오늘 가장 기억에 남는 일은 무엇인가요?</p>
-                <p>A. 점심으로 먹은 돈가스가 너무 맛있었어요.</p>
-            </span>
-            <span>
-                <h2 className='histday'>2023-09-31 00:44:41</h2>
-            </span>
-            <span>
-                <h2 className='histday'>2023-08-31 00:44:41</h2>
-            </span>
-            <button>레포트 생성하기</button>
+          <ul className='bookList'>
+            <li><img src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9788954692526.jpg"></img>
+              <div>
+                <a href="/bookDetail">
+                  <span>소설</span>
+                  <span>각각의 계절</span>
+                </a>
+                <span>"권여선, 문학동네</span>
+              </div>
+            </li>
+          </ul>
         </div>
 
-        <div className='themehead'>
+        {/* <div className='themehead'>
             <img src={icon3} className='icon'></img>
             <p className='theme'>Achievements</p>
         </div>
@@ -112,7 +120,7 @@ const Mypage = () => {
                     <p>계속해서 독서를 즐기며 지식의 세계로 더 깊이 파고들어보세요!</p>
                 </ul>
             </span>
-        </div>
+        </div> */}
     </AllWrapper>
    
 

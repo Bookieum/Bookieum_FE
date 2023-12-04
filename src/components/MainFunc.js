@@ -127,7 +127,10 @@ const VideoRecorder = () => {
         // 'Content-Type': 'multipart/form-data; application/json; charset=utf-8'
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body:formData
+      body:{
+        formData,
+        access_token:window.localStorage.getItem('token')
+      }
     })
     .then(res=>res.json())
     .then(res=>{
