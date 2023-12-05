@@ -34,6 +34,7 @@ const Mypage = () => {
   const [genre, setGenre] = useState();
   const [mood, setMood] = useState();
   const [interest, setInterest] = useState();
+  const [isbn, setIsbn]=useState();
 
 
 
@@ -62,6 +63,7 @@ const Mypage = () => {
       setInterest(res.data.interest)
       const profileImageSrc = getProfileImage(res.data.reading_level);
       setProfileImage(profileImageSrc);
+      setIsbn(res.data.isbn)
 
       // nickName=res.data.fields.user_name
     })
@@ -88,7 +90,9 @@ const Mypage = () => {
         return profile3;
       }
     };
-
+    const saveIsbnId=()=>{
+      window.localStorage.setItem("isbn_id",isbn)
+    }
 
   }
   return (
