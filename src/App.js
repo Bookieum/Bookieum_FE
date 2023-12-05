@@ -11,6 +11,7 @@ import Kakao_auth from './components/Kakao_Auth'
 import Naver_auth from './components/Naver_Auth'
 import Google_auth from './components/Google_Auth'
 import Logout from './components/Logout'
+import BookDetail from "./components/BookDetail";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
 import React from "react";
@@ -63,6 +64,7 @@ function App() {
             <Route path="/mypage" element={<MyPage/>}/>
             <Route path="/question" element={<Question/>}/>
             <Route path="/mainFunc" element={<MainFunc />} />
+            <Route path="/bookDetail" element={<BookDetail />} />
           </Routes>
       </ContentWrapper>
       <Footer />
