@@ -42,6 +42,17 @@ const Mypage = () => {
     getProfile();
   }, []);
 
+  const parseJsonArray = (data) => {
+    try {
+      // 문자열 내부의 작은따옴표를 큰따옴표로 바꾸고 JSON 배열로 파싱하여 반환
+      const jsonArray = JSON.parse(data.replace(/'/g, '"'));
+      return Array.isArray(jsonArray) ? jsonArray : [];
+    } catch (error) {
+      console.error('Error parsing JSON array:', error);
+      return [];
+    }
+  };
+
   const getProfile=(code,isChecked)=>{
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/mypage/information/',{
       method:'POST',
@@ -58,13 +69,21 @@ const Mypage = () => {
       setNickName(res.data.user_name);
       setreadLevel(res.data.reading_level);
       setGender(res.data.gender)
-      setGenre(res.data.genre)
-      setMood(res.data.mood)
-      setInterest(res.data.interest)
+      // setGenre(res.data.genre)
+      // setMood(res.data.mood)
+      // setInterest(res.data.interest)
       const profileImageSrc = getProfileImage(res.data.reading_level);
       setProfileImage(profileImageSrc);
       setIsbn(res.data.isbn)
 
+      const genreArray = parseJsonArray(res.data.genre);
+      const moodArray = parseJsonArray(res.data.mood);
+      const interestArray = parseJsonArray(res.data.interest);
+
+      // 설정된 배열을 문자열로 변환하여 설정
+      setGenre(genreArray.join(', '));
+      setMood(moodArray.join(', '));
+      setInterest(interestArray.join(', '));
       // nickName=res.data.fields.user_name
     })
 
@@ -77,7 +96,6 @@ const Mypage = () => {
     //   }
     //   return img_src;
     // }
-
     const getProfileImage = (readLevel) => {
       // 여기에서 readLevel에 따라 다른 이미지 주소를 반환합니다.
       if (readLevel === 0) {
@@ -111,10 +129,10 @@ const Mypage = () => {
                 <span className='userinfo'>
                     <ul className='info'>
                         {/* <li>userid: {user_id}</li> */}
-                        <li>reding Level : {readLevel}</li>
-                        <li>이름 : {nickName}</li>
-                        <li>성별 : {gender} </li>
-                        <li>선호 장르 : <br/> Genre : {genre} <br/>Mood : {mood} <br/> Interest: {interest}</li>
+                        <li className='reading_Level'> {readLevel}</li>
+                        <li className="이름"> {nickName}</li>
+                        <li className='성별'> {gender} </li>
+                        <li className='선호장르'> {genre},{mood},{interest}</li>
                     </ul>
                 </span>
             </div>
