@@ -121,6 +121,7 @@ const VideoRecorder = () => {
     const formData = new FormData();
     formData.append("text",text)
     formData.append("video", videoBlob); 
+    formData.append("access_token", window.localStorage.getItem('token')); 
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
       method:'POST',
       hearders:{
@@ -129,7 +130,6 @@ const VideoRecorder = () => {
       },
       body:{
         formData,
-        access_token:window.localStorage.getItem('token')
       }
     })
     .then(res=>res.json())

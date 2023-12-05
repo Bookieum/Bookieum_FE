@@ -6,7 +6,11 @@ import icon1 from '../image/icon1.png'
 import icon2 from '../image/icon2.png'
 import icon3 from '../image/icon3.png'
 import icon4 from '../image/icon4.png'
-import icon5 from '../image/새싹.png'
+import profile0 from '../image/0_icon.png'
+import profile1 from '../image/1_icon.png'
+import profile2 from '../image/2_icon.png'
+import profile3 from '../image/3_icon.png'
+
 
 import { useEffect, useState } from 'react';
 
@@ -56,11 +60,34 @@ const Mypage = () => {
       setGenre(res.data.genre)
       setMood(res.data.mood)
       setInterest(res.data.interest)
-      
+      const profileImageSrc = getProfileImage(res.data.reading_level);
+      setProfileImage(profileImageSrc);
 
       // nickName=res.data.fields.user_name
     })
 
+    // function profileImg(){
+    //   let img_src;
+    //   for (var i=0; i<=5; i++){
+    //     if(readLevel ==i){
+    //       img_src='../image/'+i+'_icon.png'
+    //     }
+    //   }
+    //   return img_src;
+    // }
+
+    const getProfileImage = (readLevel) => {
+      // 여기에서 readLevel에 따라 다른 이미지 주소를 반환합니다.
+      if (readLevel === 0) {
+        return profile0;
+      } else if (readLevel === 1) {
+        return profile1;
+      } else if (readLevel === 2) {
+        return profile2;
+      } else {
+        return profile3;
+      }
+    };
 
 
   }
@@ -75,7 +102,7 @@ const Mypage = () => {
             <div className='head'>
                 <span className='profileimg'>
                     {/* <img src={profileImage} style={{ width: '200px', height: '200px' }}></img> */}
-                    <img src={icon5} className="profile"></img>
+                    <img className="profile" src={profileImage} alt='react'></img>
                 </span>
                 <span className='userinfo'>
                     <ul className='info'>

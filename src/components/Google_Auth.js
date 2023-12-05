@@ -35,7 +35,7 @@ const Google = (props) => {
         window.localStorage.setItem('token', data.access_token);
 
         // 3) 액세스 토큰 백엔드로 보내기
-        fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/google/oauth/',{
+        fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/google2/oauth/',{
         method:'POST',
         hearders:{
           'Content-Type':'application/json; charset=utf-8'
