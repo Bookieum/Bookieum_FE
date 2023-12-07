@@ -5,6 +5,8 @@ import loginimg from'../image/로그인.png'
 import logoutimg from '../image/로그아웃.png'
 import mypageimg from '../image/마이페이지.png'
 import surveyimg from '../image/설문.png'
+import logo from '../image/logo.png'
+import logoname from '../image/logoname.png'
 
 const Navbar = styled.nav`
 
@@ -40,19 +42,23 @@ const Navbarlogo = styled.div`
     /* 북이음 */
 
   // position: absolute;
-  width: 188px;
+  width: 300px;
   height: 69px;
   left: 67px;
   top: 9px;
-  padding: 0 30px;
+  // padding: 0 30px;
   font-family: 'Yeongdeok Blueroad';
   font-style: normal;
   font-weight: 400;
   font-size: 46px;
   line-height: 56px;
-
+  
   color: #000000;
-
+  img{
+    margin-right:15px;
+    margin-left:10px;
+    margin-top:10px;
+  }
 
   @media only screen and (max-width: 768px) {
     flex-direction: column;
@@ -227,7 +233,16 @@ export default function Header(props) {
       <Navbar>
         <Navbarlogo>
           {/* <img src={logo} alt="Logo" width="50" height="50" /> */}
-          <a href='/'>북이음</a>
+          <span>          
+            <a href='/'><img src={logo} style={{width:'40px', height:'40px'}}>
+            {/* <a href='/'></a> */}
+          </img>
+          <img src={logoname} style={{width:'180px', height:'40px'}}> 
+          {/* <a href='/'></a>  */}
+          </img></a>
+          
+          </span>
+
         </Navbarlogo>
         <Navbarmenu>
           <Searchbar>

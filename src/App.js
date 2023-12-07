@@ -53,7 +53,7 @@ function App() {
       <ContentWrapper>
         <Header login={login}/>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<Home login={login}/>} />
             <Route path="/login" element={<Login />}/>
             <Route path="/logout" element={<Logout />}/>
             <Route path='/kakao/oauth' element={<Kakao_auth/>}/>

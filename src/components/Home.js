@@ -16,7 +16,11 @@ const AllWrapper = styled.div`
   align-items:center;
 //   animation: color-change-2x 2s linear infinite alternate both;
 }
+`;
 
+const Container = styled.span`
+  display: flex;
+  flex-direction: column;
 `;
 export default function Home(props){
 // const Home = (props) => {
@@ -34,15 +38,25 @@ export default function Home(props){
                 props.login
                 ?
                 (
-                <span>
-                    <button class='btn btn-5' ><a href="/quesiton"className='start'>설문하기</a></button>
-                    <button class='btn btn-5' ><a href="/mainfunc" className='start'>추천받기</a></button>
-                </span>
+                    <Container>
+                    <button class='btn btn-5'>
+                      <a href="/question" className='start'>
+                        설문하기
+                      </a>
+                    </button>
+                    <button class='btn btn-5'>
+                      <a href="/mainfunc" className='start'>
+                        추천받기
+                      </a>
+                    </button>
+                  </Container>
                 )
                 :
                 (
-                <button class='btn btn-5'><a href="/login" className='start'>시작하기</a></button>
-                )
+                <span>
+                    <button class='btn btn-5'><a href="/login" className='start'>시작하기</a></button>
+                </span>
+            )
           }
 
         </AllWrapper>     
