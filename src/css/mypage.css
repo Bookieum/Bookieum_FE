@@ -90,6 +90,7 @@
     padding-left:0px;
     margin-left:0px;
     width: 100%;
+    line-height: 2; /* 원하는 줄 간격으로 조절 (기본값은 1) */
 }
 div span ul{
     text-decoration: none;
