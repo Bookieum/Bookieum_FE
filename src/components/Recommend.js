@@ -1,4 +1,4 @@
-import {React, useState, useNavigate}from 'react';
+import {React, useState, useNavigate, useEffect}from 'react';
 import { useLocation } from 'react-router-dom';
 import '../css/home.css';
 import styled from "styled-components";
@@ -67,7 +67,9 @@ const Recomemnd = () => {
         })
         .catch(error => console.error('Error:', error));
       };
-
+      useEffect(() => {
+        sendRecommendId();
+      }, []);
     return (  
         <AllWrapper>
         <div>
