@@ -138,7 +138,7 @@ const Mypage = () => {
             <img src={icon2} className='icon'></img>
             <p className='theme'>History</p>
         </div>
-        <div className='mid'>
+        {/* <div className='mid'>
           <ul className='bookList'>
             {bookData.map((book, index) => (
               <li key={index}>
@@ -153,7 +153,7 @@ const Mypage = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         {/* <div className='themehead'>
             <img src={icon3} className='icon'></img>
