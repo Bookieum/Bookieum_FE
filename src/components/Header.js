@@ -155,7 +155,7 @@ const Searchbar=styled.div`
     width: 17px;
     top: 11px;
     right: 0.3px;
-    margin: 0;
+    // margin-right: 14px;
     margin-top:4px;
     }
 `;
@@ -177,7 +177,8 @@ const Menu=styled.div`
     font-weight: bold;
     font-size:1.0625rem;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 20px;
+    margin-left:-5px;
   }
   li:hover {
     background-color: #a5c9ca;
@@ -247,6 +248,7 @@ export default function Header(props) {
             :
             (<Menu>
               <li><a href="/login"><img src={loginimg} style={{width:'30px', height:'30px'}}></img></a></li>
+
             </Menu>
             )
           }

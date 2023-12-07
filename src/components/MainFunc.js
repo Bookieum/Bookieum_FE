@@ -160,7 +160,7 @@ const VideoRecorder = () => {
           </section>
         </div>
         <div className='submitdiv'>
-          <button class="submit" type='submit' onClick={sendHandler}  className="learn-more" >Submit</button>
+          <button class="submit" type='submit' onClick={sendHandler} >Submit</button>
           {/* <button class="submit" type='submit' onClick={sendVideo}>Video Submit</button> */}
         </div>
       </form>

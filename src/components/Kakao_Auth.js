@@ -56,6 +56,8 @@ const Kakao_Auth = () => {
     .then(res=>{
       console.log(res)
       console.log('성공')
+      window.location.replace('/')
+
       // window.location.replace('/question')
     })
   };

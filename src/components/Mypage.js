@@ -141,17 +141,17 @@ const Mypage = () => {
         {/* <div className='mid'>
           <ul className='bookList'>
             {bookData.map((book, index) => (
-              <li key={index}>
-                <img src={book.image} alt={`Book Cover ${index + 1}`} />
-                <div>
-                  <a href="/bookDetail">
-                    <span>{book.genre}</span>
-                    <span>{book.title}</span>
-                  </a>
-                  <span>{`"${book.author}", ${book.publisher}`}</span>
-                </div>
-              </li>
-            ))}
+          <li key={index}>
+            <img src={book.image} alt={`Book Cover ${index + 1}`} />
+            <div>
+              <a href="/bookDetail">
+                <span>{book.genre}</span>
+                <span>{book.title}</span>
+              </a>
+              <span>{`"${book.author}", ${book.publisher}`}</span>
+            </div>
+          </li>
+        ))}
           </ul>
         </div> */}
 

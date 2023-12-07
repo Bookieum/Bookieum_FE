@@ -45,6 +45,8 @@ const Google = (props) => {
         console.log(res)
         console.log('성공')
         // window.location.replace('/question')
+        window.location.replace('/')
+
       })
       })
       .catch(error => console.error('Error:', error));

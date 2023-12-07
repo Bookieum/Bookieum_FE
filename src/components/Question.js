@@ -102,9 +102,9 @@ const Survey = () => {
       <div className='submitdiv'>
         {
           ques===2?
-        <button class="submit" onClick={submit} className="learn-more">Submit</button>
+        <button class="submit" onClick={submit}>Submit</button>
         :
-        <button class="submit"  onClick={nextPage} className="learn-more">Next</button>
+        <button class="submit"  onClick={nextPage}>Next</button>
         }
       </div>
           
