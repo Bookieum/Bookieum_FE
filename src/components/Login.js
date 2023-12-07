@@ -4,6 +4,8 @@ import styled from "styled-components";
 import naver from '../image/btnW_완성형.png';
 import kakao from '../image/kakao.png';
 import google from '../image/google.png';
+import {useEffect} from 'react';
+import {Naver_Login} from './Naver_Auth';
 
 const AllWrapper = styled.div`
   display:block;

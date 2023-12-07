@@ -1,4 +1,8 @@
+import {GoogleLogin} from "@react-oauth/google";
+import {GoogleOAuthProvider} from "@react-oauth/google";
+import Proptypes from 'prop-types';
 import React, {useEffect,useState} from "react"
+import axios from 'axios';
 
 const Google = (props) => {
     const [ data, setData ] = useState(null);
