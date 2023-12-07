@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/home.css';
 import styled from "styled-components";
 import { useEffect, useState, useRef, useCallback, useContext } from 'react';
+// import '../css/question.css'
 import '../css/mainfunc.css'
 import Webcam from 'react-webcam';
 import axios from 'axios';
@@ -27,17 +28,36 @@ const VideoRecorder = () => {
   const [content, setContent] = useState("");
   const mediaRecorder = useRef(null);
   const videoChunks = useRef([]);
+  // const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
+  // const formData = new FormData();
   const navigate = useNavigate();
-  // const [book1, setBook1]=useState();
-  // const [book2, setBook2]=useState();
-  // const [book3, setBook3]=useState();
-  const [recommendId, setRecommendId]=useState();
   // 텍스트 전달
   const [text,setText] = useState("");
+
   const textHandler = (e) => {
     e.preventDefault();
     setText(e.target.value);
   };
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   // state에 저장한 값을 가져옵니다.
+  //   fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
+  //     method:'POST',
+  //     hearders:{
+  //       'Content-Type':'application/json; charset=utf-8'
+  //     },
+  //     body:JSON.stringify({
+  //       text:text
+  //     }),
+  //   })
+  //   .then(res=>res.json())
+  //   .then(res=>{
+  //     console.log(res)
+  //     console.log('성공')
+  //     // window.location.replace('/question')
+  //   })
+  // };
+
 
 //   //비디오 전달
   const getMediaPermission = useCallback(async () => {
@@ -116,24 +136,9 @@ const VideoRecorder = () => {
     .then(res=>{
       console.log(res)
       console.log('성공')
-      // 백엔드 데이터 받고 확인 후 수정
-      setRecommendId(res.data.recommend_id)
-      // setBook1(res.data.recommend_books[0].mybookid);
-      // setBook2(res.data.recommend_books[1].mybookid);
-      // setBook3(res.data.recommend_books[2].mybookid);
-      handleRecommendBook();
+      // window.location.replace('/question')
     })
   }
-
-  //추천받은 책 3권 데이터 recommend
-  const handleRecommendBook=()=>{
-    navigate('/recommend',{
-      state:{
-        recommend_id:recommendId
-      },
-    });
-  };
-
   useEffect(() => {
     getMediaPermission();
   }, []);
@@ -160,7 +165,7 @@ const VideoRecorder = () => {
           </section>
         </div>
         <div className='submitdiv'>
-          <button class="submit" type='submit' onClick={sendHandler} >Submit</button>
+          <button class="submit" type='submit' onClick={sendHandler}>Submit</button>
           {/* <button class="submit" type='submit' onClick={sendVideo}>Video Submit</button> */}
         </div>
       </form>
