@@ -29,7 +29,7 @@ const Recomemnd = () => {
     const navigate = useNavigate();
     const sendRecommendId=()=>{
         // 메인 기능에서 
-        fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/kakao/oauth/', {
+        fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/result/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
