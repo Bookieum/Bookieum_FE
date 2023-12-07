@@ -1,7 +1,6 @@
 import React from 'react';
 import '../css/mypage.css';
 import styled from "styled-components";
-import cute from '../image/cute.png'
 import icon1 from '../image/icon1.png'
 import icon2 from '../image/icon2.png'
 import icon3 from '../image/icon3.png'
@@ -106,9 +105,9 @@ const Mypage = () => {
         return profile3;
       }
     };
-    const saveIsbnId=()=>{
-      window.localStorage.setItem("isbn_id",isbn)
-    }
+    // const saveIsbnId=()=>{
+    //   window.localStorage.setItem("isbn_id",isbn)
+    // }
 
   }
   return (
@@ -141,15 +140,18 @@ const Mypage = () => {
         </div>
         <div className='mid'>
           <ul className='bookList'>
-            <li><img src="https://contents.kyobobook.co.kr/sih/fit-in/300x0/pdt/9788954692526.jpg"></img>
-              <div>
-                <a href="/bookDetail">
-                  <span>소설</span>
-                  <span>각각의 계절</span>
-                </a>
-                <span>"권여선, 문학동네</span>
-              </div>
-            </li>
+            {bookData.map((book, index) => (
+              <li key={index}>
+                <img src={book.image} alt={`Book Cover ${index + 1}`} />
+                <div>
+                  <a href="/bookDetail">
+                    <span>{book.genre}</span>
+                    <span>{book.title}</span>
+                  </a>
+                  <span>{`"${book.author}", ${book.publisher}`}</span>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 

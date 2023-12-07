@@ -35,7 +35,7 @@ export default function Home(props){
                 ?
                 (
                 <span>
-                    <button class='btn btn-5' ><a href="/quesiton" className='start'>설문하기</a></button>
+                    <button class='btn btn-5' ><a href="/quesiton"className='start'>설문하기</a></button>
                     <button class='btn btn-5' ><a href="/mainfunc" className='start'>추천받기</a></button>
                 </span>
                 )
