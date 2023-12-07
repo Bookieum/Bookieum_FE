@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/home.css';
 import styled from "styled-components";
 import { useEffect, useState, useRef, useCallback, useContext } from 'react';
-// import '../css/question.css'
 import '../css/mainfunc.css'
 import Webcam from 'react-webcam';
 import axios from 'axios';

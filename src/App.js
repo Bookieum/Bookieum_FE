@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import Footer from "./pages/Footer/Footer";
 import styled from "styled-components";
-import Signup from './components/Signup'
 import Home from './components/Home';
 import Login from './components/Login'
 import MyPage from './components/Mypage'
@@ -60,7 +59,6 @@ function App() {
             <Route path='/kakao/oauth' element={<Kakao_auth/>}/>
             <Route path='/naver/oauth' element={<Naver_auth/>}/>
             <Route path='/google/oauth' element={<Google_auth/>}/>
-            <Route path="/signup" element={<Signup/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
             <Route path="/question" element={<Question/>}/>
             <Route path="/mainFunc" element={<MainFunc />} />

@@ -1,11 +1,10 @@
 import React from 'react';
 import '../css/Login.css';
-import {useEffect} from 'react';
 import styled from "styled-components";
 import naver from '../image/btnW_완성형.png';
 import kakao from '../image/kakao.png';
 import google from '../image/google.png';
-import {Naver_Login} from './Naver_Auth';
+
 const AllWrapper = styled.div`
   display:block;
   flex-direction: column;
@@ -51,9 +50,7 @@ const Login = () => {
                     </a>
                 </span>
             </div>
-
         </AllWrapper>
-        
     );
 };
 

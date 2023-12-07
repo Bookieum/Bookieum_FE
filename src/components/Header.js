@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import search_icon from "../image/ico_package.png";
-import { Link } from "react-router-dom";
-import { produceWithPatches } from "immer";
+import diaryimg from '../image/일기.png'
+import loginimg from'../image/로그인.png'
+import logoutimg from '../image/로그아웃.png'
+import mypageimg from '../image/마이페이지.png'
+import surveyimg from '../image/설문.png'
 
 const Navbar = styled.nav`
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem;
+  // padding: 1rem;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
@@ -144,6 +148,7 @@ const Searchbar=styled.div`
     border-radius: 8px;
     padding: 10px 12px;
     font-size: 14px;
+    margin-top:4px;
   }
   img {
     position : absolute;
@@ -151,6 +156,7 @@ const Searchbar=styled.div`
     top: 11px;
     right: 0.3px;
     margin: 0;
+    margin-top:4px;
     }
 `;
 
@@ -171,6 +177,7 @@ const Menu=styled.div`
     font-weight: bold;
     font-size:1.0625rem;
     text-decoration: none;
+    margin: 0 10px;
   }
   li:hover {
     background-color: #a5c9ca;
@@ -230,17 +237,16 @@ export default function Header(props) {
             props.login
             ?
             (<Menu>
-              <li><a href="/question">설문</a></li>
-              <li><a href="/mainfunc">책 추천</a></li>
-              <li><a href="/mypage">마이페이지</a></li>
-              <li><a href="/logout">로그아웃</a></li>
+              <li><a href="/question"><img src={surveyimg} style={{width:'30px', height:'30px'}}></img></a></li>
+              <li><a href="/mainfunc"><img src={diaryimg} style={{width:'30px', height:'30px'}}></img></a></li>
+              <li><a href="/mypage"><img src={mypageimg} style={{width:'30px', height:'30px'}}></img></a></li>
+              <li><a href="/logout"><img src={logoutimg} style={{width:'35px', height:'35px'}}></img></a></li>
 
-              {/* <li><button onClick={onLogout}>로그아웃</button></li> */}
             </Menu>
             )
             :
             (<Menu>
-              <li><a href="/login">로그인</a></li>
+              <li><a href="/login"><img src={loginimg} style={{width:'30px', height:'30px'}}></img></a></li>
             </Menu>
             )
           }

@@ -1,8 +1,4 @@
-import {GoogleLogin} from "@react-oauth/google";
-import {GoogleOAuthProvider} from "@react-oauth/google";
-import Proptypes from 'prop-types';
 import React, {useEffect,useState} from "react"
-import axios from 'axios';
 
 const Google = (props) => {
     const [ data, setData ] = useState(null);
@@ -48,7 +44,7 @@ const Google = (props) => {
       .then(res=>{
         console.log(res)
         console.log('성공')
-        window.location.replace('/question')
+        // window.location.replace('/question')
       })
       })
       .catch(error => console.error('Error:', error));
@@ -57,6 +53,9 @@ const Google = (props) => {
     useEffect(()=>{
       googleLogin();
     },[]);
+
+  return <div>로그인 진행중입니다..</div>
+
   
 }
 export default Google;

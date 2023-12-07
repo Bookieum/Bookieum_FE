@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import KaKaoLogin from 'react-kakao-login';
 import axios from 'axios';
 import qs from 'qs';
+
 const Kakao_Auth = () => {
   // const REST_API_KEY = [REST_API_KEY]
   // const REDIRECT_URI = [REDIRECT_URI]
@@ -57,7 +56,7 @@ const Kakao_Auth = () => {
     .then(res=>{
       console.log(res)
       console.log('성공')
-      window.location.replace('/question')
+      // window.location.replace('/question')
     })
   };
   useEffect(() => {

@@ -10,8 +10,6 @@ import profile0 from '../image/0_icon.png'
 import profile1 from '../image/1_icon.png'
 import profile2 from '../image/2_icon.png'
 import profile3 from '../image/3_icon.png'
-
-
 import { useEffect, useState } from 'react';
 
 const AllWrapper = styled.div`
