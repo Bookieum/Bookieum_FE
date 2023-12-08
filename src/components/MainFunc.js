@@ -165,9 +165,9 @@ const VideoRecorder = () => {
           {/* <button class="submit" type='submit' onClick={sendVideo}>Video Submit</button> */}
         </div>
       </form>
-      <button onClick={() => mediaRecorder.current.start()}>Start Recording</button>
+      {/* <button onClick={() => mediaRecorder.current.start()}>Start Recording</button>
       <button onClick={() => mediaRecorder.current.stop()}>Stop Recording</button>
-      <button onClick={downloadVideo}>Download</button>
+      <button onClick={downloadVideo}>Download</button> */}
 
     </AllWrapper>
   );

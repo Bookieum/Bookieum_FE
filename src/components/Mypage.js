@@ -32,6 +32,7 @@ const Mypage = () => {
   const [mood, setMood] = useState();
   const [interest, setInterest] = useState();
   const [isbn, setIsbn]=useState();
+  const [bookData, setBookData]=useState([])
 
 
 
@@ -62,13 +63,11 @@ const Mypage = () => {
     })
     .then(res=>res.json())
     .then(res=>{
-      console.log(res.data)
+      console.log(res)
       setNickName(res.data.user_name);
       setreadLevel(res.data.reading_level);
       setGender(res.data.gender)
-      // setGenre(res.data.genre)
-      // setMood(res.data.mood)
-      // setInterest(res.data.interest)
+
       const profileImageSrc = getProfileImage(res.data.reading_level);
       setProfileImage(profileImageSrc);
       setIsbn(res.data.isbn)
@@ -81,18 +80,11 @@ const Mypage = () => {
       setGenre(genreArray.join(', '));
       setMood(moodArray.join(', '));
       setInterest(interestArray.join(', '));
-      // nickName=res.data.fields.user_name
+
+      //history
+      setBookData(res.history);
     })
 
-    // function profileImg(){
-    //   let img_src;
-    //   for (var i=0; i<=5; i++){
-    //     if(readLevel ==i){
-    //       img_src='../image/'+i+'_icon.png'
-    //     }
-    //   }
-    //   return img_src;
-    // }
     const getProfileImage = (readLevel) => {
       // 여기에서 readLevel에 따라 다른 이미지 주소를 반환합니다.
       if (readLevel === 0) {
@@ -142,23 +134,20 @@ const Mypage = () => {
             <img src={icon2} className='icon'></img>
             <p className='theme'>History</p>
         </div>
-        <a href='/bookdetail'>예시</a>
-        {/* <div className='mid'>
+        <div className='mid'>
           <ul className='bookList'>
             {bookData.map((book, index) => (
-          <li key={index}>
-            <img src={book.image} alt={`Book Cover ${index + 1}`} />
-            <div>
-              <a href="/bookDetail">
-                <span>{book.genre}</span>
-                <span>{book.title}</span>
-              </a>
-              <span>{`"${book.author}", ${book.publisher}`}</span>
-            </div>
-          </li>
-        ))}
+              <li key={index}>
+                <img src={book.cover} alt={`Book Cover ${index + 1}`} />
+                <div>
+                  <a href="/bookDetail">
+                    <span>{book.title}</span>
+                </a>
+              </div>
+            </li>
+          ))}
           </ul>
-        </div> */}
+        </div>
 
         {/* <div className='themehead'>
             <img src={icon3} className='icon'></img>

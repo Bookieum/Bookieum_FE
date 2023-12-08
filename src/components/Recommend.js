@@ -128,6 +128,7 @@ const Recommend = () => {
             .then((response) => response.json())
             .then((data) => {
                 // console.log(data)
+                window.location.replace("/mypage")
             })
             .catch((error) => console.error("Error:", error));
         console.log("Send Books:", selectedBooks);
@@ -150,12 +151,13 @@ const Recommend = () => {
                                     {book.description}
                                 </div>
                             </div>
+                            <h3 className="custom-h2">{book.title}</h3>
                             <button
                                 className="title-button"
                                 onClick={() => handleBookSelect(book.mybook_id)}
                                 data-id={book.mybook_id}
                             >
-                                {book.title}
+                                선택
                             </button>
                         </div>
                     ))}

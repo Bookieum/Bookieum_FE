@@ -16,17 +16,13 @@
 }
 .mid {
     width:800px;
-    /* display:inline-table; */
     margin:auto;
     position: relative;
-    /* align-items: center; */
-    /* text-align:center; */
-    /* border: 1px solid black; */
-    /* display: flex; */
-    /* display:flex; */
-    justify-content: center;
+    /* justify-content: center; */
     padding: 10px 10px;
     background-color: #fbe1d088;
+    justify-content: space-between; /* 가로 간격을 조절하려면 다른 값을 사용할 수 있습니다. */
+    align-items: center; /* 필요에 따라 세로 정렬을 조절할 수 있습니다. */
 
 }
 .fin {
@@ -68,14 +64,8 @@
     /* padding: 10px 10px; */
 }
 .userinfo {
-    /* font-weight: 200px; */
-    /* height: auto; */
-    width:400px;
-    /* border: 10px black; */
-    /* border-radius: 5px; */
-    /* background-color: yellow; */
-    /* padding:10px; */
-    padding: 0 20px;
+    width:500px;
+    padding: 0 10px;
     font-size: bold;
     display:inline-block;
     /* text-align:center; */
@@ -111,22 +101,17 @@ div span ul{
     /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 }
 .theme{
-
     position: relative;
     display:inline-block;
-    width: 262px;
+    width: auto;
     /* height: 44px; */
     left: 74px;
     top: 19px;
-
     font-family: 'Playfair Display';
     font-style: normal;
     font-weight: 700;
     font-size: 33px;
-    /* line-height: 44px; */
-    /* identical to box height */
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
     color: #000000;
 }
 .icon{
@@ -213,3 +198,30 @@ div span ul{
     font-size: 15px;
 } */
 
+.mid .bookList {
+    list-style: none; /* 기본 목록 마커를 제거합니다. */
+    padding: 0; /* 목록의 내부 간격을 제거합니다. */
+    display: flex;
+    gap: 20px; /* 각 항목 간격 설정 */
+  }
+  .mid .bookList li {
+    margin-right: 10px; /* 각 li 요소 사이의 가로 간격을 조절합니다. */
+    text-align: center; /* 각 항목 가운데 정렬 */
+  }
+  
+  .mid .bookList img {
+    width: 100px; /* 이미지의 너비를 조절할 수 있습니다. */
+    height: 150px; /* 높이를 자동으로 조절하여 비율을 유지합니다. */
+    max-width: 100px; /*이미지의 최대 너비 설정*/
+    margin-bottom: 20px;
+    
+  }
+
+  a {
+    color: inherit; /* 기본 링크 색상을 상속합니다. */
+    text-decoration: none; /* 밑줄을 없앱니다. */
+  }
+  .bookList span {
+    font-family: 'Yeongdeok Blueroad'; /* 여기서 'Your Desired Font'에 사용하고자 하는 글씨체 이름을 입력합니다. */
+    /* 다른 스타일 속성도 추가할 수 있습니다. */
+  }
