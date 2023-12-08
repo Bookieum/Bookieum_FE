@@ -236,10 +236,10 @@ export default function Header(props) {
         <Navbarlogo>
           {/* <img src={logo} alt="Logo" width="50" height="50" /> */}
           <span>          
-            <a href='/'><img src={logo} style={{width:'40px', height:'40px'}}>
+            <a href='/'><img src={logo} style={{width:'35px', height:'35px'}}>
             {/* <a href='/'></a> */}
           </img>
-          <img src={logoname} style={{width:'180px', height:'40px'}}> 
+          <img src={logoname} style={{width:'180px', height:'35px'}}> 
           </img></a>
           </span>
 

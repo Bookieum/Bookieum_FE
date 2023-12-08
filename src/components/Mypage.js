@@ -108,6 +108,10 @@ const Mypage = () => {
     // const saveIsbnId=()=>{
     //   window.localStorage.setItem("isbn_id",isbn)
     // }
+    
+
+    
+
 
   }
   return (
@@ -138,6 +142,7 @@ const Mypage = () => {
             <img src={icon2} className='icon'></img>
             <p className='theme'>History</p>
         </div>
+        <a href='/bookdetail'>예시</a>
         {/* <div className='mid'>
           <ul className='bookList'>
             {bookData.map((book, index) => (

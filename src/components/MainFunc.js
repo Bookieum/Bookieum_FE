@@ -31,6 +31,10 @@ const VideoRecorder = () => {
   // const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
   // const formData = new FormData();
   const navigate = useNavigate();
+    // const [book1, setBook1]=useState();
+  // const [book2, setBook2]=useState();
+  // const [book3, setBook3]=useState();
+  const [recommendId, setRecommendId]=useState();
   // 텍스트 전달
   const [text,setText] = useState("");
 
@@ -38,25 +42,6 @@ const VideoRecorder = () => {
     e.preventDefault();
     setText(e.target.value);
   };
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   // state에 저장한 값을 가져옵니다.
-  //   fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
-  //     method:'POST',
-  //     hearders:{
-  //       'Content-Type':'application/json; charset=utf-8'
-  //     },
-  //     body:JSON.stringify({
-  //       text:text
-  //     }),
-  //   })
-  //   .then(res=>res.json())
-  //   .then(res=>{
-  //     console.log(res)
-  //     console.log('성공')
-  //     // window.location.replace('/question')
-  //   })
-  // };
 
 
 //   //비디오 전달
@@ -135,11 +120,23 @@ const VideoRecorder = () => {
     .then(res=>{
       console.log(res)
       console.log('성공')
-      // window.location.replace('/question')
+       setRecommendId(res.data.recommend_info.recommend_id);
+       console.log(res.data.recommend_info.recommend_id);
+        window.localStorage.setItem('recommend_id',res.data.recommend_info.recommend_id)
+        handleRecommendBook();
     })
   }
+
+  const handleRecommendBook=()=>{
+    navigate('/recommend',{
+      state:{
+        recommend_id:`${recommendId}`
+      },
+    });
+  };
   useEffect(() => {
     getMediaPermission();
+
   }, []);
 
   return (

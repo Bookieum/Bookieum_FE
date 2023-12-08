@@ -51,7 +51,7 @@
     /* border-radius: 5px; */
     /* background-color: yellow; */
     /* padding: 10px; */
-    height: 240px;
+    height: 150px;
     font-size: bold;
     display:block;
     text-align:center;
@@ -59,7 +59,7 @@
     white-space: nowrap;
     /* border-radius: 5%; */
     overflow: hidden;
-    margin-top: 6px;
+    margin-top: 50px;
 }
 .profile{
     object-fit: cover;
@@ -165,19 +165,19 @@ div span ul{
 }
 
 .userinfo ul.info li.reading_Level::before {
-    content: "독서 레벨: ";
+    content: "독서 레벨  : ";
     font-weight: bold;
 }
 .userinfo ul.info li.이름::before {
-    content: "이름: ";
+    content: "이름  : ";
     font-weight: bold;
 }
 .userinfo ul.info li.성별::before {
-    content: "성별: ";
+    content: "성별  : ";
     font-weight: bold;
 }
 .userinfo ul.info li.선호장르::before {
-    content: "선호 장르: ";
+    content: "선호 장르  : ";
     font-weight: bold;
 }
 .userinfo li {

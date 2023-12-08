@@ -60,29 +60,30 @@ const AllWrapper = styled.div`
 // };
 
 const Recommend = () => {
-    const [recommendBooks, setRecommendBooks] = useState([
-        exdata.recommend_books,
-    ]);
+    const [recommendBooks, setRecommendBooks] = useState([]);
     const [selectedBooks, setSelectedBooks] = useState([]);
     const location = useLocation();
+    const bookinfo = {...location.state}
 
+    console.log(window.localStorage.getItem('recommend_id'))
     const sendRecommendId = () => {
         fetch(
-            "http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/result/",
+            `http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/result/?recommend_id=${window.localStorage.getItem('recommend_id')}`,
             {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: `recommend_id=${bookinfo.recommend_info.recommend_id}`,
+                method: "GET",
+            //     headers: {
+            //         "Content-Type": "application/x-www-form-urlencoded",
+            //     },
+            //     body: `recommend_id=${bookinfo}`,
             }
         )
             .then((response) => response.json())
             .then((data) => {
-                setRecommendBooks(data.recommend_books);
+                setRecommendBooks(data.books);
+                console.log(data)
+
             })
             .catch((error) => console.error("Error:", error));
-        setRecommendBooks(exdata.recommend_books);
     };
 
     const handleBookSelect = (selectedBookId) => {
@@ -112,16 +113,16 @@ const Recommend = () => {
 
     const sendSelectBook = () => {
         fetch(
-            "http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/selectbook/",
+            "http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/select/",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: {
+                body: JSON.stringify({
                     access_token: window.localStorage.getItem("token"),
-                    selectbook: selectbooklist,
-                },
+                    select_list: selectedBooks,
+                }),
             }
         )
             .then((response) => response.json())
@@ -141,7 +142,7 @@ const Recommend = () => {
             <div className="RecommendBookContainer">
                 <h2 className="custom-h2">추천 도서 목록</h2>
                 <div className="CustomBookList">
-                    {recommendBooks.map((book) => (
+                    {recommendBooks  && recommendBooks.map((book) => (
                         <div className="CustomBookItem" key={book.mybook_id}>
                             <div className="CustomBookImage">
                                 <img src={book.cover} alt={book.title} />

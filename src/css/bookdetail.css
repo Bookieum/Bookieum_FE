@@ -1,0 +1,21 @@
+.totalwrap {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .bookimg img {
+    width: 200px; /* 적절한 크기로 조절 */
+    height: auto; /* 가로 크기에 따라 세로 크기 조절 */
+  }
+  
+  .bookdetail ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .diary {
+    margin-top: 20px;
+    width: 100%; /* 전체 너비 사용 */
+  }
+  
