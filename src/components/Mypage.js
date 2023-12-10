@@ -142,7 +142,9 @@ const Mypage = () => {
           <ul className='bookList'>
             {bookData.map((book, index) => (
               <li key={index}>
-                <img src={book.cover} alt={`Book Cover ${index + 1}`} />
+                <Link to={{ pathname: "/bookDetail", state: { mybook_id: book.mybook_id } }} onClick={() => saveMybookId(book.mybook_id)}>
+                  <img src={book.cover} alt={`Book Cover ${index + 1}`} />
+                </Link>
                 <div>
                 {/* Link 컴포넌트의 to 속성에 객체를 전달하여 상태를 함께 전달 */}
                 <Link to={{ pathname: "/bookDetail", state: { mybook_id: book.mybook_id } }} onClick={() => saveMybookId(book.mybook_id)}>
