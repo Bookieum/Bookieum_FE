@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import qs from 'qs';
+
 function Naver_Login(props) {
 
   const NAVER_CLIENT_ID="smCljzCdxfjm9Zp4EBDC"

@@ -7,8 +7,6 @@ import mypageimg from '../image/마이페이지.png'
 import surveyimg from '../image/설문.png'
 import logo from '../image/logo.png'
 import logoname from '../image/logoname.png'
-import { Link } from "react-router-dom";
-import { produceWithPatches } from "immer";
 
 const Navbar = styled.nav`
 

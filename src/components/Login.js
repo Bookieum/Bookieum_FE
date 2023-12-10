@@ -4,8 +4,6 @@ import styled from "styled-components";
 import naver from '../image/btnW_완성형.png';
 import kakao from '../image/kakao.png';
 import google from '../image/google.png';
-import {useEffect} from 'react';
-import {Naver_Login} from './Naver_Auth';
 
 const AllWrapper = styled.div`
   display:block;
@@ -26,8 +24,8 @@ const Login = () => {
 
     // // 네이버 로그인
     const NAVER_CLINET_ID="smCljzCdxfjm9Zp4EBDC"
-    // const NAVER_REDIRECT_URI="http://localhost:3000/naver/oauth"
-    const NAVER_REDIRECT_URI="http://bookieum-bucket.s3-website.ap-northeast-2.amazonaws.com/naver/oauth"
+    const NAVER_REDIRECT_URI="http://localhost:3000/naver/oauth"
+    // const NAVER_REDIRECT_URI="http://bookieum-bucket.s3-website.ap-northeast-2.amazonaws.com/naver/oauth"
 
     const STATE="false"
     const NAVER_AUTH_URL=`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLINET_ID}&state=${STATE}&redirect_uri=${NAVER_REDIRECT_URI}`

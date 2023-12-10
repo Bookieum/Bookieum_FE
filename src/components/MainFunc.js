@@ -1,11 +1,8 @@
 import React from 'react';
 import '../css/home.css';
 import styled from "styled-components";
-import { useEffect, useState, useRef, useCallback, useContext } from 'react';
-// import '../css/question.css'
+import { useEffect, useState, useRef, useCallback } from 'react';
 import '../css/mainfunc.css'
-import Webcam from 'react-webcam';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import mimeType  from 'mime';
 import { useNavigate } from 'react-router-dom';
@@ -23,9 +20,7 @@ const AllWrapper = styled.div`
 
 `;
 const VideoRecorder = () => {
-  const contentRef = useRef();
   const videoRef = useRef(null);
-  const [content, setContent] = useState("");
   const mediaRecorder = useRef(null);
   const videoChunks = useRef([]);
   const navigate = useNavigate();
@@ -59,6 +54,8 @@ const VideoRecorder = () => {
 
       if (videoRef.current) {
           videoRef.current.srcObject = videoStream;
+          videoRef.current.src = URL.createObjectURL(videoStream);
+          videoRef.current.play();
       }
 
       // MediaRecorder 추가
@@ -96,40 +93,38 @@ const VideoRecorder = () => {
   };
 
 
-  const sendHandler=(e)=>{
+  const sendHandler = (e) => {
     e.preventDefault();
     const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
     const formData = new FormData();
-    formData.append("text",text)
-    formData.append("video", videoBlob); 
-    formData.append("access_token", window.localStorage.getItem('token')); 
-    setLoading(true); // 데이터 전송 시작 시 로딩 상태를 true로 설정
+    formData.append("text", text);
+    formData.append("video", videoBlob);
+    formData.append("access_token", window.localStorage.getItem('token'));
+    setLoading(true);
 
-    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
-      method:'POST',
-      hearders:{
-        // 'Content-Type': 'multipart/form-data; application/json; charset=utf-8'
-        'Content-Type': 'application/x-www-form-urlencoded'
+    fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/', {
+      method: 'POST',
+      headers: {
+        // 'Content-Type': 'multipart/form-data; application/json; charset=utf-8' // 삭제
       },
-      body:formData,
-    
+      body: formData,
     })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res);
-      console.log('성공');
-      setRecommendId(res.data.recommend_info.recommend_id);
-      console.log(res.data.recommend_info.recommend_id);
-      window.localStorage.setItem('recommend_id', res.data.recommend_info.recommend_id);
-      handleRecommendBook();
-    })
-    .catch((error) => {
-      console.error('Error sending data:', error);
-    })
-    .finally(() => {
-      setLoading(false); // 데이터 전송 완료 시 로딩 상태를 false로 설정
-    });
-  }
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        console.log('성공');
+        setRecommendId(res.data.recommend_info.recommend_id);
+        console.log(res.data.recommend_info.recommend_id);
+        window.localStorage.setItem('recommend_id', res.data.recommend_info.recommend_id);
+        handleRecommendBook();
+      })
+      .catch((error) => {
+        console.error('Error sending data:', error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   const handleRecommendBook=()=>{
     navigate('/recommend',{
@@ -138,7 +133,7 @@ const VideoRecorder = () => {
       },
     });
   };
-  
+
   useEffect(() => {
     getMediaPermission();
 

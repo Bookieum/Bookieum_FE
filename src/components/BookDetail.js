@@ -1,7 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import '../css/home.css';
 import styled from "styled-components";
-import { useResolvedPath, useLocation } from 'react-router-dom';
 import "../css/bookdetail.css";
 import Swal from 'sweetalert2';
 
@@ -30,7 +29,6 @@ const Divider = styled.div`
 
 
 const BookDetail = () => {
-    // const [bookIsbn, setBookIsbn] = useState();
     const [bookImg, setBookImg] = useState();
     const [bookName, setBookName] = useState();
     const [bookAuthor, setBookAuthor] = useState();
@@ -127,7 +125,6 @@ const BookDetail = () => {
                         <li><strong>출판 연도  :</strong> {bookPubDate}</li>
                         <li><strong>카테고리  :</strong> {bookCategory}</li>
                         <li><strong>총 페이지 수  :</strong> {totalPages}</li>
-                        {/* <li><strong>현재 페이지 수  :</strong> {bookcurpage}</li> */}
                          {/* 편집 중이면 입력 필드를 렌더링하고, 그렇지 않으면 페이지 번호를 렌더링합니다. */}
                         <li onClick={handlePageClick}>
                             <strong>현재 페이지 수 :</strong> {isEditing ? (
@@ -152,14 +149,9 @@ const BookDetail = () => {
             <div className='diary'>
                 <h3>내가 쓴 일기</h3>
             <Divider />
-
                 <p className='content'>{diary}</p>
             </div>
-
         </AllWrapper>
-
-
-        
     );
 };
 

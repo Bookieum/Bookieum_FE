@@ -33,7 +33,6 @@ export default function Home(props){
                 슬픔에서 행복으로 이주하세요.<br/>
                 행복은 그대로 이어줄게요.</p>
             </div>
-            {/* <button class='btn btn-5'><a id='startLink' class='start'>시작하기</a></button> */}
             {
                 props.login
                 ?

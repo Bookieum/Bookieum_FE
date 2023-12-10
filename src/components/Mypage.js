@@ -3,8 +3,6 @@ import '../css/mypage.css';
 import styled from "styled-components";
 import icon1 from '../image/icon1.png'
 import icon2 from '../image/icon2.png'
-import icon3 from '../image/icon3.png'
-import icon4 from '../image/icon4.png'
 import profile0 from '../image/0_icon.png'
 import profile1 from '../image/1_icon.png'
 import profile2 from '../image/2_icon.png'
@@ -72,7 +70,6 @@ const Mypage = () => {
       const profileImageSrc = getProfileImage(res.data.reading_level);
       setProfileImage(profileImageSrc);
       setMybookId(res.history.mybook_id);
-      // window.localStorage.setItem('mybook_id',res.data.recommend_info.mybook_id)
 
       const genreArray = parseJsonArray(res.data.genre);
       const moodArray = parseJsonArray(res.data.mood);
@@ -155,22 +152,6 @@ const Mypage = () => {
           ))}
           </ul>
         </div>
-
-        {/* <div className='themehead'>
-            <img src={icon3} className='icon'></img>
-            <p className='theme'>Achievements</p>
-        </div>
-        <div className='fin'>
-            <span className='userinfo'>
-                <ul className='info'>
-                    <li>12권의 도서를 추천 받았어요</li>
-                    <li>현재 6권의 책을 읽고 있어요</li>
-                    <li>2권의 책을 성공적으로 완독했어요</li>
-                    <li>추천 도서를 친구에게 3회 공유했어요</li>
-                    <p>계속해서 독서를 즐기며 지식의 세계로 더 깊이 파고들어보세요!</p>
-                </ul>
-            </span>
-        </div> */}
     </AllWrapper>
    
 
