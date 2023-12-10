@@ -228,3 +228,10 @@ div span ul{
     font-family: 'Yeongdeok Blueroad'; /* 여기서 'Your Desired Font'에 사용하고자 하는 글씨체 이름을 입력합니다. */
     /* 다른 스타일 속성도 추가할 수 있습니다. */
   }
+
+  .bookList li span {
+    overflow-wrap: break-word;
+    max-width: 140px; /* 예시로 150px로 설정, 필요에 따라 조절하세요. */
+    display: inline-block; /* 줄 바꿈을 위해 블록 레벨 요소로 변환합니다. */
+    white-space: normal;
+  }
