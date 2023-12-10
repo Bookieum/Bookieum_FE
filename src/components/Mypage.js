@@ -10,7 +10,7 @@ import profile1 from '../image/1_icon.png'
 import profile2 from '../image/2_icon.png'
 import profile3 from '../image/3_icon.png'
 import { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 const AllWrapper = styled.div`
   display:block;
   flex-direction: column;
@@ -31,10 +31,10 @@ const Mypage = () => {
   const [genre, setGenre] = useState();
   const [mood, setMood] = useState();
   const [interest, setInterest] = useState();
-  const [isbn, setIsbn]=useState();
+  const [mybookId, setMybookId]=useState();
   const [bookData, setBookData]=useState([])
-
-
+  const [readingNum, setReadingNum]=useState();
+  const [needNum, setNeedNum]=useState();
 
   useEffect(() => {
     getProfile();
@@ -67,10 +67,12 @@ const Mypage = () => {
       setNickName(res.data.user_name);
       setreadLevel(res.data.reading_level);
       setGender(res.data.gender)
-
+      setReadingNum(res.data.reading_num);
+      setNeedNum(res.data.need_num);
       const profileImageSrc = getProfileImage(res.data.reading_level);
       setProfileImage(profileImageSrc);
-      setIsbn(res.data.isbn)
+      setMybookId(res.history.mybook_id);
+      // window.localStorage.setItem('mybook_id',res.data.recommend_info.mybook_id)
 
       const genreArray = parseJsonArray(res.data.genre);
       const moodArray = parseJsonArray(res.data.mood);
@@ -97,22 +99,21 @@ const Mypage = () => {
         return profile3;
       }
     };
-    // const saveIsbnId=()=>{
-    //   window.localStorage.setItem("isbn_id",isbn)
-    // }
-    
-
-    
-
 
   }
+  const saveMybookId=(mybookId)=>{
+    window.localStorage.setItem('mybook_id', mybookId)
+  };
+  // const sendBookDetail=()=>{
+
+  // }
   return (
     <AllWrapper>
         <div>
             <div className='themehead'>
                 <img src={icon1} className='icon'></img>
                 <p className='theme'>User Infomation</p>
-                <a href=""><img src={icon4} className='modifyicon'></img></a>
+                {/* <a href=""><img src={icon4} className='modifyicon'></img></a> */}
             </div>
             <div className='head'>
                 <span className='profileimg'>
@@ -126,6 +127,9 @@ const Mypage = () => {
                         <li className="이름"> {nickName}</li>
                         <li className='성별'> {gender} </li>
                         <li className='선호장르'> {genre},{mood},{interest}</li>
+                        <li className='읽은권수'> {readingNum} 권</li>
+                        <li className='필요권수'> * 다음 레벨까지 {needNum} 권이 필요합니다! *</li>
+
                     </ul>
                 </span>
             </div>
@@ -140,9 +144,10 @@ const Mypage = () => {
               <li key={index}>
                 <img src={book.cover} alt={`Book Cover ${index + 1}`} />
                 <div>
-                  <a href="/bookDetail">
-                    <span>{book.title}</span>
-                </a>
+                {/* Link 컴포넌트의 to 속성에 객체를 전달하여 상태를 함께 전달 */}
+                <Link to={{ pathname: "/bookDetail", state: { mybook_id: book.mybook_id } }} onClick={() => saveMybookId(book.mybook_id)}>
+                  <span>{book.title}</span>
+                </Link>
               </div>
             </li>
           ))}

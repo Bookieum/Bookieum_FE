@@ -1,21 +1,66 @@
 .totalwrap {
-    display: flex;
-    align-items: flex-start;
+  font-family: 'Yeongdeok Blueroad';
+  width: 800px;
+  display: flex;
+  align-items: flex-start;
+
   }
   
   .bookimg img {
-    width: 200px; /* 적절한 크기로 조절 */
+    width: 180px; /* 적절한 크기로 조절 */
     height: auto; /* 가로 크기에 따라 세로 크기 조절 */
+    margin:20px 40px;
+    margin-right:80px;
+
   }
   
   .bookdetail ul {
     list-style-type: none;
     padding: 0;
     text-align: left;
+    font-size:18px;
+    line-height: 1.6; /* 원하는 줄 간격으로 조절 (기본값은 1) */
+
   }
   
   .diary {
     margin-top: 20px;
     width: 100%; /* 전체 너비 사용 */
+    height: 300px;
+
   }
-  
+  .diary p{
+    text-align: left; /* 왼쪽 정렬을 유지합니다. */
+    font-size: 20px;
+    padding:0 10px;
+
+
+  }
+.description{
+  width: 800px; /* 전체 너비 사용 */
+  border-bottom: 2px solid #ccc;
+  padding:40px 30px;
+  line-height: 1.4; /* 원하는 줄 간격으로 조절 (기본값은 1) */
+  /* padding-bottom: 30px; */
+
+
+}
+.description li{
+  list-style-type: none;
+
+
+}
+.bookdetail .booktitle{
+  font-family: 'Yeongdeok Blueroad';
+  font-size:30px;
+  padding-bottom: 15px;
+}
+.currPage{
+  font-size: 10px;
+  text-decoration: underline;
+  display: inline-block;
+  margin-left: 30px; /* 원하는 간격으로 조절할 수 있습니다. */
+  height: 0px;
+  margin: 0;
+  padding:0;
+}

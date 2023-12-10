@@ -156,7 +156,8 @@ const VideoRecorder = () => {
               placeholder="오늘 하루를 솔직하게 적어주세요."
               type="text"
               name="diary"
-              onChange={textHandler} />
+              onChange={textHandler} 
+              maxLength={300}/>
 
           </section>
         </div>

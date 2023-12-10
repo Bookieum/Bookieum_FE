@@ -1,13 +1,9 @@
 .head {
     width:800px;
-    height: 250px;
-    /* display:inline-table; */
+    /* height: 300px; */
+    height: auto;
     margin:auto;
     position: relative;
-    /* align-items: center; */
-    /* text-align:center; */
-    /* border: 1px solid black; */
-    /* display: flex; */
     display:flex;
     justify-content: center;
     background-color: #fbe1d088;
@@ -23,6 +19,8 @@
     background-color: #fbe1d088;
     justify-content: space-between; /* 가로 간격을 조절하려면 다른 값을 사용할 수 있습니다. */
     align-items: center; /* 필요에 따라 세로 정렬을 조절할 수 있습니다. */
+    overflow-x: auto;
+    white-space: nowrap;
 
 }
 .fin {
@@ -42,20 +40,15 @@
 
 }
 .profileimg{
-    /* font-weight: 200px; */
-    /* border: 10px black; */
-    /* border-radius: 5px; */
-    /* background-color: yellow; */
-    /* padding: 10px; */
     height: 150px;
     font-size: bold;
-    display:block;
-    text-align:center;
-    margin: 0 auto;
+    display:flex;
+    align-items: center;
+    margin: auto auto;
     white-space: nowrap;
     /* border-radius: 5%; */
     overflow: hidden;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 .profile{
     object-fit: cover;
@@ -80,7 +73,7 @@
     padding-left:0px;
     margin-left:0px;
     width: 100%;
-    line-height: 2; /* 원하는 줄 간격으로 조절 (기본값은 1) */
+    line-height: 1.4; /* 원하는 줄 간격으로 조절 (기본값은 1) */
 }
 div span ul{
     text-decoration: none;
@@ -165,7 +158,16 @@ div span ul{
     content: "선호 장르  : ";
     font-weight: bold;
 }
+.userinfo ul.info li.읽은권수::before {
+    content: "읽은 권수  : ";
+    font-weight: bold;
+}
+.userinfo ul.info li.필요권수::before {
+    /* content: "읽은 권수  : "; */
+    font-weight: bold;
+}
 .userinfo li {
+    padding-top: 10px;
     white-space: pre-line; /* 줄바꿈 문자를 유지하고, 단어 단위로 줄바꿈 */
     word-wrap: break-word; /* 긴 단어를 줄바꿈 처리 */
     overflow-wrap: break-word; /* 단어 단위로 줄바꿈하지 않고, 일정 길이 이상에서만 줄바꿈 */
@@ -202,11 +204,12 @@ div span ul{
     list-style: none; /* 기본 목록 마커를 제거합니다. */
     padding: 0; /* 목록의 내부 간격을 제거합니다. */
     display: flex;
-    gap: 20px; /* 각 항목 간격 설정 */
+    gap: 10px; /* 아이템 간격을 조절할 수 있습니다. */
   }
   .mid .bookList li {
     margin-right: 10px; /* 각 li 요소 사이의 가로 간격을 조절합니다. */
     text-align: center; /* 각 항목 가운데 정렬 */
+    flex: 0 0 auto;
   }
   
   .mid .bookList img {
