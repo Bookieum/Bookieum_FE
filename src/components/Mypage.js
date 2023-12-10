@@ -126,7 +126,7 @@ const Mypage = () => {
                         <li className='reading_Level'> {readLevel}</li>
                         <li className="이름"> {nickName}</li>
                         <li className='성별'> {gender} </li>
-                        <li className='선호장르'> {genre},{mood},{interest}</li>
+                        <li className='선호장르'> {genre}, {mood}, {interest}</li>
                         <li className='읽은권수'> {readingNum} 권</li>
                         <li className='필요권수'> * 다음 레벨까지 {needNum} 권이 필요합니다! *</li>
 
