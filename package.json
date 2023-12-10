@@ -45,6 +45,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "http://bookieum-bucket.s3-website.ap-northeast-2.amazonaws.com",
   "eslintConfig": {
     "extends": [
       "react-app",
