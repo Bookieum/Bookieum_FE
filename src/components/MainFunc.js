@@ -15,10 +15,10 @@ const AllWrapper = styled.div`
   flex-direction: column;
   margin:auto;
   height:auto;
-//   width:fit-content;
   width:700px;
   text-align: center;
   align-items:center;
+  margin-top:-30px;
 }
 
 `;
@@ -28,13 +28,9 @@ const VideoRecorder = () => {
   const [content, setContent] = useState("");
   const mediaRecorder = useRef(null);
   const videoChunks = useRef([]);
-  // const videoBlob = new Blob(videoChunks.current, { type: 'video/webm' });
-  // const formData = new FormData();
   const navigate = useNavigate();
-    // const [book1, setBook1]=useState();
-  // const [book2, setBook2]=useState();
-  // const [book3, setBook3]=useState();
   const [recommendId, setRecommendId]=useState();
+  const [loading, setLoading] = useState(false); // 로딩 상태를 저장할 상태
   // 텍스트 전달
   const [text,setText] = useState("");
 
@@ -107,6 +103,8 @@ const VideoRecorder = () => {
     formData.append("text",text)
     formData.append("video", videoBlob); 
     formData.append("access_token", window.localStorage.getItem('token')); 
+    setLoading(true); // 데이터 전송 시작 시 로딩 상태를 true로 설정
+
     fetch('http://ec2-13-124-237-120.ap-northeast-2.compute.amazonaws.com:8000/main/recommendation/',{
       method:'POST',
       hearders:{
@@ -116,15 +114,21 @@ const VideoRecorder = () => {
       body:formData,
     
     })
-    .then(res=>res.json())
-    .then(res=>{
-      console.log(res)
-      console.log('성공')
-       setRecommendId(res.data.recommend_info.recommend_id);
-       console.log(res.data.recommend_info.recommend_id);
-        window.localStorage.setItem('recommend_id',res.data.recommend_info.recommend_id)
-        handleRecommendBook();
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      console.log('성공');
+      setRecommendId(res.data.recommend_info.recommend_id);
+      console.log(res.data.recommend_info.recommend_id);
+      window.localStorage.setItem('recommend_id', res.data.recommend_info.recommend_id);
+      handleRecommendBook();
     })
+    .catch((error) => {
+      console.error('Error sending data:', error);
+    })
+    .finally(() => {
+      setLoading(false); // 데이터 전송 완료 시 로딩 상태를 false로 설정
+    });
   }
 
   const handleRecommendBook=()=>{
@@ -134,6 +138,7 @@ const VideoRecorder = () => {
       },
     });
   };
+  
   useEffect(() => {
     getMediaPermission();
 
@@ -143,17 +148,20 @@ const VideoRecorder = () => {
     
     <AllWrapper>
       <div className='question'>
+        <p className='explane'>저희 <strong>북이음</strong>은 사용자분들의 하루를 더 풍요롭게 <br/>만들어드리기 위해 특별한 기능을 제공합니다. <br/>바로 <strong>화면을 녹화하여</strong> 사용자분들이 작성한 일기와 함께,<br/> 당신의 감정을 분석하고 그에 맞는 독서 추천을 제공합니다.</p>
+
         <p>당신의 오늘 하루는 어땠나요?</p>
       </div>
       <form>
         <div>
+          
           <section>
-          <video ref={videoRef} autoPlay />
+          {/* <video ref={videoRef} autoPlay /> */}
             {/* <Webcam
               width={'300px'}
               border-radius={'10px'}/> */}
             <textarea
-              placeholder="오늘 하루를 솔직하게 적어주세요."
+              placeholder="오늘 하루를 솔직하게 적어주세요. (최대 300자)"
               type="text"
               name="diary"
               onChange={textHandler} 
@@ -162,13 +170,9 @@ const VideoRecorder = () => {
           </section>
         </div>
         <div className='submitdiv'>
-          <button class="submit" type='submit' onClick={sendHandler}>Submit</button>
-          {/* <button class="submit" type='submit' onClick={sendVideo}>Video Submit</button> */}
+          <button class="submit" type='submit' onClick={sendHandler}>{loading ? '전송 중...' : 'Submit'}</button>
         </div>
       </form>
-      {/* <button onClick={() => mediaRecorder.current.start()}>Start Recording</button>
-      <button onClick={() => mediaRecorder.current.stop()}>Stop Recording</button>
-      <button onClick={downloadVideo}>Download</button> */}
 
     </AllWrapper>
   );

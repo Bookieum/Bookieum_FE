@@ -95,7 +95,8 @@ const BookDetail = () => {
           setBookName(res.book_info.title);
           setBookAuthor(res.book_info.author);
           setBookPublisher(res.book_info.publisher);
-          setBookPubDate(res.book_info.pub_date);
+          const pubDate = res.book_info.pub_date.split('T')[0];
+          setBookPubDate(pubDate);
           setTotalPages(res.book_info.page_num);
           setBookCategory(res.book_info.category_name);
           setBookDescription(res.book_info.description);
@@ -109,9 +110,6 @@ const BookDetail = () => {
           console.error('Error:', error);
         }
       }
-            // const sendProgress=()=>{
-            
-        // }
     useEffect(() => {
         getBookDetail();
       });

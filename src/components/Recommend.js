@@ -142,6 +142,8 @@ const Recommend = () => {
         <AllWrapper>
             <div className="RecommendBookContainer">
                 <h2 className="custom-h2">추천 도서 목록</h2>
+                <p>책 커버 위의 줄거리를 확인하고 오늘의 감정 도서를 선택하세요!</p>
+
                 <div className="CustomBookList">
                     {recommendBooks  && recommendBooks.map((book) => (
                         <div className="CustomBookItem" key={book.mybook_id}>
@@ -163,7 +165,6 @@ const Recommend = () => {
                     ))}
                 </div>
             </div>
-            <p>책 커버 위의 줄거리를 확인하고 오늘의 감정 도서를 선택하세요!</p>
             <button className="complete-button" onClick={sendSelectBook}>
                 선택 완료
             </button>

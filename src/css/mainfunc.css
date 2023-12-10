@@ -17,18 +17,39 @@ textarea {
 .submitdiv{
     display: flex;
   }
-  .submit{
+  /* .submit{
     margin: 0 auto;
     margin-top: 60px;
     padding: 10px 50px;
     font-size: 20px;
     background-color: white;
     border-radius: 20px;
+  } */
+  .submit {
+    background-color: #fcb69f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  
+    /* 기본 상태에서의 스타일 */
   }
+  
+  .submit:hover {
+    background-color: #ffecd2;
+  }
+  
   div>p{
     font-size:30px;
 }
 
 .contanier{
     width: 70px;
+}
+.explane{
+  font-size: 15px;
+  color: rgb(59, 59, 59);
+  line-height: 1.2; /* 원하는 줄 간격으로 조절 (기본값은 1) */
+  font-style: normal;
 }

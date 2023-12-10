@@ -8,7 +8,7 @@ const Google = (props) => {
     const [ data, setData ] = useState(null);
     const GOOGLE_CLIENT_ID="874649425571-cd5hu54l1keu4udm8a0bpte5388cdph4.apps.googleusercontent.com"
     const GOOGLE_CLIENT_SECRET="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"
-    const GOOGLE_REDIRECT_URI="http://localhost:3000/google/oauth"
+    const GOOGLE_REDIRECT_URI="http://bookieum-bucket.s3-website.ap-northeast-2.amazonaws.com/google/oauth"
     const oAuthURL = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=${GOOGLE_CLIENT_ID}&
   response_type=code&redirect_uri=${GOOGLE_REDIRECT_URI}&scope=email profile&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow`;
     const oAuthHandler = () => {

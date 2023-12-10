@@ -8,7 +8,8 @@ const Kakao_Auth = () => {
   // const REST_API_KEY = [REST_API_KEY]
   // const REDIRECT_URI = [REDIRECT_URI]
   const REST_API_KEY = "87fda8cc914e1e764023457a0c098552"
-  const KAKAO_REDIRECT_URI = "http://localhost:3000/kakao/oauth"
+  // const KAKAO_REDIRECT_URI = "http://localhost:3000/kakao/oauth"
+  const KAKAO_REDIRECT_URI = "http://bookieum-bucket.s3-website.ap-northeast-2.amazonaws.com/kakao/oauth"
   const KAKAO_AUTH_URL=`https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
   const CLIENT_SECRET='pLJ9Zb5Hv6LLrhxzLGZCKnO3X8yxiyIn'
   const navigate = useNavigate();
