@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.4317d79d.css",
-    "main.js": "/static/js/main.b638f1c8.js",
+    "main.js": "/static/js/main.32a07acc.js",
     "static/media/0_icon.png": "/static/media/0_icon.5f213046449b3bf1b864.png",
     "static/media/logoname.png": "/static/media/logoname.5962d0bf9525be29bdd8.png",
     "static/media/icon1.png": "/static/media/icon1.f55f6e9e17a163fbebb3.png",
@@ -11,14 +11,13 @@
     "static/media/3_icon.png": "/static/media/3_icon.ca0587269557da17e3a5.png",
     "static/media/마이페이지.png": "/static/media/마이페이지.05d0404ad8a0ab5bdefa.png",
     "static/media/btnW_완성형.png": "/static/media/btnW_완성형.b3854d2dd22c56e13835.png",
-    "static/media/icon3.png": "/static/media/icon3.51d61683e95f63147115.png",
     "static/media/설문.png": "/static/media/설문.186a23891af73627213e.png",
     "index.html": "/index.html",
     "main.4317d79d.css.map": "/static/css/main.4317d79d.css.map",
-    "main.b638f1c8.js.map": "/static/js/main.b638f1c8.js.map"
+    "main.32a07acc.js.map": "/static/js/main.32a07acc.js.map"
   },
   "entrypoints": [
     "static/css/main.4317d79d.css",
-    "static/js/main.b638f1c8.js"
+    "static/js/main.32a07acc.js"
   ]
 }
